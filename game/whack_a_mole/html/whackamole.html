@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+ <head>
+ <title>JavaScript Sprite Animation Tutorial</title>
+ </head>
+ <body>
+
+ <canvas id='canvas'></canvas><br />
+ <script>
+ var canvasWidth =300;
+ var canvasHeight = 600;
+
+ var spriteWidth = 1050;
+ var spriteHeight = 515;
+
+ var rows = 5;
+ var cols = 15;
+
+  var width = spriteWidth/cols;
+ var height = spriteHeight/rows;
+
+ var curFrame = 0;
+ var frameCount = 15;
+
+ var x, y, srcX, srcY, who;
+
+ var slot = [[10,150],[110,150],[210,150],
+    [10,300],[110,300],[210,300],
+    [10,450],[110,450],[210,450]];
+
+ var canvas = document.getElementById('canvas');
+ canvas.width = canvasWidth;
+ canvas.height = canvasHeight;
+
+ var ctx = canvas.getContext("2d");
+
+ var character = new Image();
+ character.src = "image/family_sprite.png";
+
+ function updateFrame(){
+ curFrame = ++curFrame % frameCount;
+ srcX = curFrame * width;
+ ctx.clearRect(x,y,width,height);
+ srcY =who * height;
+ ctx.drawImage(character,srcX,srcY,width,height,x,y,width,height);
+ if (curFrame==14){player();}
+ }
+
+ function draw(){
+ updateFrame();
+ drawslot();
+ drawtext();
+ }
+
+function player(){
+   who = Math.floor(Math.random()*5);
+   var i = Math.floor(Math.random()*9);
+   x = slot[i][0]+5;
+   y = slot[i][1]-100;
+}
+
+function drawslot(){
+  for(var i=0; i<9; i++) {
+    var sx = slot[i][0];
+    var sy = slot[i][1];
+    ctx.fillStyle = 'rgb(200,0, 0)';
+    ctx.fillRect(sx,sy, 80, 10);
+  }
+}
+
+function drawtext(){
+  ctx.font = "30px Comic Sans MS";
+ctx.fillStyle = "green";
+ctx.textAlign = "center";
+ctx.fillText("승화네 따라잡기",canvas.width/2,35);
+}
+
+setInterval(draw,100);
+
+
+ </script>
+ </body>
+</html>

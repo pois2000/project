@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\05782bf1b65912c3a56b384c83f434344dad373f\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_79c2b195378b087656e3e018386e40e6b7b0a11d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\438e66476c113d4c735847ac519194ff2a1ebc7e\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3c11ce0343eff764ae45936726f17b1efc5914f5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\79f76b5fbc6bad7fe7a346b5f146dae27d18cfa8\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a093a7c0cce5332c6946763fac7bcdd0bc81697d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_8d02b9b8ec68ea3bb6683f41932de1007e79008c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_d66fb52a378c2c859ae72fa9a1a3fd18fa4be318\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="625c29be5ed0efe9892f21292d8d401dcb954454">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_92ac5aab200a4b38a703b4fe82ed7ee1704ca96a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\7ca890b3f216e0d6431d7b8445288b035a86ab91\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e006d7431b3fb80189f16cc592d111dd59b413ed\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\92b5921988f7432832f80191595c6d216fbb962a\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_58e98d0279e063f322dafc22685e7697d3cb2090\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\dd2c526bac6cd10b688be3c8f3b7b0d1501e869d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d71afda94abaa1d358711858f589d5adad728c36\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.3.1_39b723e15e94e0b111866c49f8e3d796e2727335\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\1b802474688a338b217935292e1a29600e537ead\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a1249e8084dc3c3b3d92d9944af990562f8d6aa1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\3625a5102d89be226f9db05a81761046b0013706\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c52bbecb0778d212f742e3c1f9e6557880df5bb5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\de84c8f6e3a6163a4930bb08ef6471de00defee4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b99b1e3900ade37a8b377506697f39aabc0d37d1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\a1d69dfaf95136cee8a0d1ad5afe4d1f133ecae4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="C:\Users\pois_home\Documents\GitHub\AndroidStudioProjects\Whackmyfamily\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_be9ba92d72c6835f8d374502def46aede6fd18b0\classes.dex" />
+    </item>
+
+</items>
