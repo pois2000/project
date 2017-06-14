@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\dd7cd0ce4b83bdde6005996bf2e3686c3ec7e1f8\output\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="cfb91ea7c6890336890ccb42767041af6b863e32">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_ecde9b84ff424eae2ced37d0ef0f573a6371f85f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.1\support-annotations-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a09194311f8f89c3e6db09d79f50897a889d615e">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.0.1_5238579494918095f6fc6011657cd4d401286e17\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\9a760cdc80caf0d3f3c6253e0cecf22a01901a77\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_317317778a13ad523534d913ee43f277300c86e6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="80443af1b66c79b7cbd2e7ba6875149b043c2f22">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_9cb64518d5759e04ceef0587bfebb7c2843e1f9a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\1c02dd704bce5148e5814d3a9c529300f07c2a32\output\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_c23da3255468300bca89ac803243da51cb86048d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\c56c85f5de1fd0f9c6e1cb406c0d1d0f8e2d7a6d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f6c9a290cb2329707896885bb1cf42dd3dd15aa5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\865f38c8dbd337c03ac916c4da475bce70c0553b\output\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_e54c85696c208b398bdbba3fb5b062b80f7b3bd1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\358a24b692f8d86f35dda759def0dcca5324546b\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="1108575c7dc7b7f5b378b3290ac90de81a9b8830">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_35c53a5ab98ba0470cdcb5171d96c488707e1951\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\dd7cd0ce4b83bdde6005996bf2e3686c3ec7e1f8\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="9abf11d546d9e0ee82da86df608ced7a961b76ac">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ba791064c48a1c80bac9b07f076b68d0845697d0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\a980fa397021478057ab4222fbcc5dc622a81cc0\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_88ad5c2afb251c2154368149e1a12da60a4d8129\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_9efbdb4e14d86be6b16ecc89d6bdb1335dc0245d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\1c02dd704bce5148e5814d3a9c529300f07c2a32\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d93993a5bbc814e52cc40582dc9e94701de78c5b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\fded2f5e16403d86959cee7fe23509a441a36d1f\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_aea45a8f2bb9abe88c527745ccfcc90eb162255a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\c3e8d7b236600615a25a232722e4194b7caaa175\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_87f6576dcb85015a0300982277fdb07e1e62ad2c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\c56c85f5de1fd0f9c6e1cb406c0d1d0f8e2d7a6d\output\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="f83b00041ecfba705603fec40363416c7de69719">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_3b0217ebfb8ad52640e76833f454af98ddc3414a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\865f38c8dbd337c03ac916c4da475bce70c0553b\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fe661b25c91cc89edff6a2aa0780a7f9ae8c256a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\32a73e79cee44be4cbd9f1a61b68baad907eddc4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_be0482814d4a1515c7d8de394e5a2183c4dd5931\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\9a760cdc80caf0d3f3c6253e0cecf22a01901a77\output\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_6472832d49a8f28583afe997110ff3c70dfac4f3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\c3e8d7b236600615a25a232722e4194b7caaa175\output\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_32f4e37d078d12242647921cd9192deb63fa8d3d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\264414ad9a81b75d52c554c9cac7630c1777ff86\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="772bed2d992b67b9d0327f766cc95cd63031dcd3">
+        <dex dex="D:\AndroidStudioProjects\Camera2Raw\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2407571fd54bbbdaf49bc7c7193781b73a08337d\classes.dex" />
+    </item>
+
+</items>
