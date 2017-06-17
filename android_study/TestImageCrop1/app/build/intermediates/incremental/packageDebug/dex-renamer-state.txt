@@ -1,0 +1,7 @@
+#Sun Jun 18 05:51:52 KST 2017
+base.0=D\:\\project\\android_study\\TestImageCrop1\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_0bc1164328f95765405312785b4a713947d50e5b
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=D\:\\project\\android_study\\TestImageCrop1\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_328aa2cc309b4e94427c9095fe0b370fe4a5177e\\classes.dex
+base.1=D\:\\project\\android_study\\TestImageCrop1\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_328aa2cc309b4e94427c9095fe0b370fe4a5177e
+file.0=D\:\\project\\android_study\\TestImageCrop1\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_0bc1164328f95765405312785b4a713947d50e5b\\classes.dex

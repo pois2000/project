@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="pois.home.a1.MainActivity">
+
+    <ImageButton
+        android:id="@+id/getlove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="#ffff006c"
+        android:cropToPadding="false"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/get" />
+
+    <ImageButton
+        android:id="@+id/sendlove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="#ff7e00ff"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+
+        app:srcCompat="@drawable/send" />
+
+</LinearLayout>

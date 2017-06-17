@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\7355805ca7e9fccbc36711a09e3e7da19e1a8439\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4932095f9f46042592539db8e868c03edcb52735\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.1\support-annotations-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a09194311f8f89c3e6db09d79f50897a889d615e">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.0.1_dd81ee396fa7d0a6162471cd8a95d4e609a7599f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\0fc22136810117a004a589bcb7d78707a1f08064\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_be4313200f0c5f27539f4695f6ccfc27cd46fbbb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\53bd680b132463d5c42954e3a8bb99aba39a49e8\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c6ffa333d4b69417c86c16af192741ade6ac2689\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\65babdc66e1de7e161ef1b51a88450b8f0a66597\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="9abf11d546d9e0ee82da86df608ced7a961b76ac">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a274e53f2bea0c63f95e0554444f8c204b3874ec\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\7355805ca7e9fccbc36711a09e3e7da19e1a8439\output\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_0dda189e1fef87c26427448776cb3362bab39293\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\65babdc66e1de7e161ef1b51a88450b8f0a66597\output\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="cfb91ea7c6890336890ccb42767041af6b863e32">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_52b23c48ce766a0253da8e1ced5359256576a774\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\ea03b811ab17d42b59594fe725449c1bc6bac885\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="1108575c7dc7b7f5b378b3290ac90de81a9b8830">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_38f4bf6d88f68fa94665fd783c0f1a0c4fe42401\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\51d4d2242c85aa90861d7bd56ada157903597837\output\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_777e58f1190278c0dd63d23bcc989a19f0668c06\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\8089ef8c974f2d4529e2324b846b2bc5291bda8d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="772bed2d992b67b9d0327f766cc95cd63031dcd3">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0579e9bbfd1e27a580cb7cf035499c478d2381f3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\7cb301e284ef5fcaa88e4d17f03167c1309dca4a\output\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_198a1dbbbdb0be6af33d07057957cc995ad8e56d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\90dd47289909665da06140d1173d93f3fdd50dae\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7159a466a5fe7619e5a4895b22001adcc5d3ba3c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\90dd47289909665da06140d1173d93f3fdd50dae\output\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_3e2e72f73a665ac170b3c07193cb4fe7ae9bce7e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\7cb301e284ef5fcaa88e4d17f03167c1309dca4a\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6641a9f316a176933b3e7f18f65835718467ce5d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\project\android_study\Camera2Basic\Application\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_728fffbb97e383f598619eaa04e41c3a462b848a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\51d4d2242c85aa90861d7bd56ada157903597837\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8714683f979f63d73e66f0f9e5929423f85282ef\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\project\android_study\Camera2Basic\Application\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b55fa713fa3ba10c41b3da323f8e296805fbe49f">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_323a7067f1cb5bd87f86042c69257133dc9309d1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\9b60333a20688dcbe3dd42f0f845c3a9b6041bed\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_981b8d89b3048798532c34d422a315d3ff26d741\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\1ccfdcc7ddbb37926c9eac11b9e4edb873137974\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8539c10fad8da2962054659946c6aabc7cf822d8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\pois_home\.android\build-cache\9b60333a20688dcbe3dd42f0f845c3a9b6041bed\output\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="f83b00041ecfba705603fec40363416c7de69719">
+        <dex dex="D:\project\android_study\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_b450d1938303c1648fa13f93f0fbed22ee3a71dc\classes.dex" />
+    </item>
+
+</items>
