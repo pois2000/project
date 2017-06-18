@@ -11,7 +11,7 @@
 	if(isset($_POST['btnsave']))
 	{
 		$username = $_POST['user_name'];// user name
-		$userjob = $_POST['user_job'];// user email
+		$userMSG = $_POST['user_MSG'];// user email
 
 		$imgFile = $_FILES['user_image']['name'];
 		$tmp_dir = $_FILES['user_image']['tmp_name'];
@@ -21,8 +21,8 @@
 		if(empty($username)){
 			$errMSG = "Please Enter Username.";
 		}
-		else if(empty($userjob)){
-			$errMSG = "Please Enter Your Job Work.";
+		else if(empty($userMSG)){
+			$errMSG = "Please Enter Your MSG Work.";
 		}
 		else if(empty($imgFile)){
 			$errMSG = "Please Select Image File.";
@@ -37,7 +37,7 @@
 			$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
 
 			// rename uploading image
-			$userpic = "mole".rand(1,100).".".$imgExt;
+			$userpic = "mole".rand(100,9999999).".".$imgExt;
 
 			// allow valid image file formats
 			if(in_array($imgExt, $valid_extensions)){
@@ -68,11 +68,11 @@
 		// if no error occured, continue ....
 		if(!isset($errMSG))
 		{
-			$stmt = $DB_con->prepare('INSERT INTO tbl_users(userName,userProfession,userPic) VALUES(:uname, :ujob, :upic)');
+			$stmt = $DB_con->prepare('INSERT INTO tbl_users(userName,userMSG,userPic) VALUES(:uname, :uMSG, :upic)');
 			// $usernane = iconv("utf8", "euckr", $usernane);
-			// $userjob = iconv("utf8", "euckr", $userjob);
+			// $userMSG = iconv("utf8", "euckr", $userMSG);
 			$stmt->bindParam(':uname',$username);
-			$stmt->bindParam(':ujob',$userjob);
+			$stmt->bindParam(':uMSG',$userMSG);
 			$stmt->bindParam(':upic',$userpic);
 
 			if($stmt->execute())
@@ -128,12 +128,12 @@
 
   <div class="form-group">
 <label class="control-label">Username.</label>
-<input class="form-control" type="text" name="user_name" placeholder="Enter Username" value="<?php echo $username; ?>" />
+<input class="form-control" type="text" name="user_name" placeholder="이름을 입력하세요" value="<?php echo $username; ?>" />
   </div>
 
   <div class="form-group">
-<label class="control-label">Profession(Job).</label>
-<input class="form-control" type="text" name="user_job" placeholder="Your Profession" value="<?php echo $userjob; ?>" />
+<label class="control-label">Message.</label>
+<input class="form-control" type="text" name="user_MSG" placeholder="마음을 전하세요" value="<?php echo $userMSG; ?>" />
 			</div>
 
 		  <div class="form-group">

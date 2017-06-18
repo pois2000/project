@@ -7,7 +7,7 @@
 	if(isset($_GET['edit_id']) && !empty($_GET['edit_id']))
 	{
 		$id = $_GET['edit_id'];
-		$stmt_edit = $DB_con->prepare('SELECT userName, userProfession, userPic FROM tbl_users WHERE userID =:uid');
+		$stmt_edit = $DB_con->prepare('SELECT userName, userMSG, userPic FROM tbl_users WHERE userID =:uid');
 		$stmt_edit->execute(array(':uid'=>$id));
 		$edit_row = $stmt_edit->fetch(PDO::FETCH_ASSOC);
 		extract($edit_row);
@@ -22,7 +22,7 @@
 	if(isset($_POST['btn_save_updates']))
 	{
 		$username = $_POST['user_name'];// user name
-		$userjob = $_POST['user_job'];// user email
+		$userMSG = $_POST['user_MSG'];// user email
 
 		$imgFile = $_FILES['user_image']['name'];
 		$tmp_dir = $_FILES['user_image']['tmp_name'];
@@ -63,13 +63,13 @@
 		{
 			$stmt = $DB_con->prepare('UPDATE tbl_users
 									     SET userName=:uname,
-										     userProfession=:ujob,
+										     userMSG=:uMSG,
 										     userPic=:upic
 								       WHERE userID=:uid');
 			 $usernane = iconv("utf8", "euckr", $usernane);
-			 $userjob = iconv("utf8", "euckr", $userjob);
+			 $userMSG = iconv("utf8", "euckr", $userMSG);
 			$stmt->bindParam(':uname',$username);
-			$stmt->bindParam(':ujob',$userjob);
+			$stmt->bindParam(':uMSG',$userMSG);
 			$stmt->bindParam(':upic',$userpic);
 			$stmt->bindParam(':uid',$id);
 
@@ -133,12 +133,12 @@
 		</div>
 
 	  <div class="form-group">
-<label class="control-label">직업</label>
-        <td><input class="form-control" type="text" name="user_job" value="<?php echo $userProfession; ?>" required />
+<label class="control-label">메시지</label>
+        <td><input class="form-control" type="text" name="user_MSG" value="<?php echo $userMSG; ?>" required />
 				</div>
 
 			  <div class="form-group">
-<label class="control-label">프로필사진</label>
+<label class="control-label">사진</label>
 
         	<p><img src="user_images/<?php echo $userPic; ?>" height="150" width="150" /></p>
         	<input class="input-group" type="file" name="user_image" accept="image/*" />

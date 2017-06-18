@@ -43,7 +43,7 @@
 <div class="row">
 <?php
 
-	$stmt = $DB_con->prepare('SELECT userID, userName, userProfession, userPic FROM tbl_users ORDER BY userID DESC');
+	$stmt = $DB_con->prepare('SELECT userID, userName, userMSG, userPic FROM tbl_users ORDER BY userID DESC');
 	$stmt->execute();
 
 	if($stmt->rowCount() > 0)
