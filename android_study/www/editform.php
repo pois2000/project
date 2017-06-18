@@ -66,6 +66,8 @@
 										     userProfession=:ujob,
 										     userPic=:upic
 								       WHERE userID=:uid');
+			 $usernane = iconv("utf8", "euckr", $usernane);
+			 $userjob = iconv("utf8", "euckr", $userjob);
 			$stmt->bindParam(':uname',$username);
 			$stmt->bindParam(':ujob',$userjob);
 			$stmt->bindParam(':upic',$userpic);
@@ -89,24 +91,15 @@
 	}
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Upload, Insert, Update, Delete an Image using PHP MySQL - Coding Cage</title>
-
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-
-<!-- custom stylesheet -->
-<link rel="stylesheet" href="style.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
-
-<script src="jquery-1.11.3-jquery.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -133,36 +126,32 @@
 	?>
 
 
-	<table class="table table-bordered table-responsive">
+	  <div class="form-group">
+			<label class="control-label">이름</label>
 
-    <tr>
-    	<td><label class="control-label">이름</label></td>
-        <td><input class="form-control" type="text" name="user_name" value="<?php echo $userName; ?>" required /></td>
-    </tr>
+      <input class="form-control" type="text" name="user_name" value="<?php echo $userName; ?>" required />
+		</div>
 
-    <tr>
-    	<td><label class="control-label">직업</label></td>
-        <td><input class="form-control" type="text" name="user_job" value="<?php echo $userProfession; ?>" required /></td>
-    </tr>
+	  <div class="form-group">
+<label class="control-label">직업</label>
+        <td><input class="form-control" type="text" name="user_job" value="<?php echo $userProfession; ?>" required />
+				</div>
 
-    <tr>
-    	<td><label class="control-label">프로필사진</label></td>
-        <td>
+			  <div class="form-group">
+<label class="control-label">프로필사진</label>
+
         	<p><img src="user_images/<?php echo $userPic; ?>" height="150" width="150" /></p>
         	<input class="input-group" type="file" name="user_image" accept="image/*" />
-        </td>
-    </tr>
+				</div>
 
-    <tr>
-        <td colspan="2"><button type="submit" name="btn_save_updates" class="btn btn-default">
+			  <div class="form-group">
+
+        <button type="submit" name="btn_save_updates" class="btn btn-default">
         <span class="glyphicon glyphicon-save"></span> 적용
         </button>
 
         <a class="btn btn-default" href="index.php"> <span class="glyphicon glyphicon-backward"></span> 취소 </a>
-
-        </td>
-    </tr>
-
+			</div>
     </table>
 
 </form>

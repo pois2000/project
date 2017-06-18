@@ -19,14 +19,14 @@
 	}
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
 <title>Upload, Insert, Update, Delete an Image using PHP MySQL - Coding Cage</title>
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -34,7 +34,8 @@
 <div class="container">
 
 	<div class="page-header">
-    	<h1 class="h2">누구나 / <a class="btn btn-default" href="addnew.php"> <span class="glyphicon glyphicon-plus"></span> &nbsp; 사진추가 </a></h1>
+    	<h1 class="h2">누구나 / <a class="btn btn-default" href="addnew.php">
+				<span class="glyphicon glyphicon-plus"></span> &nbsp; 사진추가 </a></h1>
     </div>
 
 <br />
@@ -53,7 +54,7 @@
 			?>
 			<div class="col-xs-3">
 				<p class="page-header"><?php echo $userName."&nbsp;/&nbsp;".$userProfession; ?></p>
-				<img src="user_images/<?php echo $row['userPic']; ?>" class="img-rounded" width="250px" height="250px" />
+				<img src="user_images/<?php echo $row['userPic']; ?>" class="img-rounded" width="100px" height="100px" />
 				<p class="page-header">
 				<span>
 				<a class="btn btn-info" href="editform.php?edit_id=<?php echo $row['userID']; ?>" title="click for edit" onclick="return confirm('sure to edit ?')"><span class="glyphicon glyphicon-edit"></span> 수정</a>
@@ -77,15 +78,6 @@
 
 ?>
 </div>
-
-
-
 </div>
-
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
-
-
 </body>
 </html>

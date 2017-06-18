@@ -1,5 +1,6 @@
 package pois.home.a1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
@@ -24,6 +25,15 @@ public class MainActivity extends AppCompatActivity {
                 TelephonyManager telephonyManager = (TelephonyManager) getApplicationContext().getSystemService(getApplicationContext().TELEPHONY_SERVICE);
                 String phoneNum = telephonyManager.getLine1Number();
                 Toast.makeText(getApplicationContext(), phoneNum+"님에게 온 메시지",1000).show();
+                Intent myIntent = new Intent(getApplicationContext(), GetLoveActivity.class);
+                startActivity(myIntent);
+            }
+        });
+        sendbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(getApplicationContext(), SendLoveActivity.class);
+                startActivity(myIntent);
             }
         });
 

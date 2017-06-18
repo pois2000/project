@@ -3,6 +3,10 @@
 	error_reporting( ~E_NOTICE ); // avoid notice
 
 	require_once 'dbconfig.php';
+	// *** In	clude the class
+	include("resize-class.php");
+
+
 
 	if(isset($_POST['btnsave']))
 	{
@@ -33,13 +37,23 @@
 			$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
 
 			// rename uploading image
-			$userpic = rand(1000,1000000).".".$imgExt;
+			$userpic = "mole".rand(1,100).".".$imgExt;
 
 			// allow valid image file formats
 			if(in_array($imgExt, $valid_extensions)){
 				// Check file size '5MB'
 				if($imgSize < 5000000)				{
-					move_uploaded_file($tmp_dir,$upload_dir.$userpic);
+
+
+				move_uploaded_file($tmp_dir,$upload_dir.$userpic);
+
+					// *** 1) Initialise / load image
+				$resizeObj = new resize($upload_dir.$userpic);
+
+				// *** 2) Resize image (options: exact, portrait, landscape, auto, crop)
+				$resizeObj -> resizeImage(200, 200, 'crop');
+				// *** 3) Save image
+				$resizeObj -> saveImage($upload_dir.$userpic, 1000);
 				}
 				else{
 					$errMSG = "Sorry, your file is too large.";
@@ -55,8 +69,8 @@
 		if(!isset($errMSG))
 		{
 			$stmt = $DB_con->prepare('INSERT INTO tbl_users(userName,userProfession,userPic) VALUES(:uname, :ujob, :upic)');
-			$usernane = iconv("utf8", "euckr", $usernane);
-			$userjob = iconv("utf8", "euckr", $userjob);
+			// $usernane = iconv("utf8", "euckr", $usernane);
+			// $userjob = iconv("utf8", "euckr", $userjob);
 			$stmt->bindParam(':uname',$username);
 			$stmt->bindParam(':ujob',$userjob);
 			$stmt->bindParam(':upic',$userpic);
@@ -73,17 +87,15 @@
 		}
 	}
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Upload, Insert, Update, Delete an Image using PHP MySQL - Coding Cage</title>
-
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -112,47 +124,30 @@
 	}
 	?>
 
-<form method="post" enctype="multipart/form-data" class="form-horizontal">
+<form method="post" enctype="multipart/form-data">
 
-	<table class="table table-bordered table-responsive">
+  <div class="form-group">
+<label class="control-label">Username.</label>
+<input class="form-control" type="text" name="user_name" placeholder="Enter Username" value="<?php echo $username; ?>" />
+  </div>
 
-    <tr>
-    	<td><label class="control-label">Username.</label></td>
-        <td><input class="form-control" type="text" name="user_name" placeholder="Enter Username" value="<?php echo $username; ?>" /></td>
-    </tr>
+  <div class="form-group">
+<label class="control-label">Profession(Job).</label>
+<input class="form-control" type="text" name="user_job" placeholder="Your Profession" value="<?php echo $userjob; ?>" />
+			</div>
 
-    <tr>
-    	<td><label class="control-label">Profession(Job).</label></td>
-        <td><input class="form-control" type="text" name="user_job" placeholder="Your Profession" value="<?php echo $userjob; ?>" /></td>
-    </tr>
+		  <div class="form-group">
+<label class="control-label">Profile Img.</label>
+<input class="input-group" type="file" name="user_image" accept="image/*" />
+			</div>
 
-    <tr>
-    	<td><label class="control-label">Profile Img.</label></td>
-        <td><input class="input-group" type="file" name="user_image" accept="image/*" /></td>
-    </tr>
-
-    <tr>
-        <td colspan="2"><button type="submit" name="btnsave" class="btn btn-default">
+		  <div class="form-group">
+<button type="submit" name="btnsave" class="btn btn-default">
         <span class="glyphicon glyphicon-save"></span> &nbsp; save
         </button>
-        </td>
-    </tr>
-
-    </table>
+			</div>
 
 </form>
-
-
 </div>
-
-
-
-
-
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
-
-
 </body>
 </html>
