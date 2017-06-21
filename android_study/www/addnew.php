@@ -24,9 +24,9 @@
 		else if(empty($userMSG)){
 			$errMSG = "Please Enter Your MSG Work.";
 		}
-		else if(empty($imgFile)){
-			$errMSG = "Please Select Image File.";
-		}
+		// else if(empty($imgFile)){
+			// $errMSG = "Please Select Image File.";
+		// }
 		else
 		{
 			$upload_dir = 'user_images/'; // upload directory

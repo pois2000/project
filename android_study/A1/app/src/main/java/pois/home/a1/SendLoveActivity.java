@@ -15,7 +15,9 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedOutputStream;
@@ -28,14 +30,15 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 
 public class SendLoveActivity extends Activity implements View.OnClickListener {
         private static String TAG = "SendLoveActivity";
 
         private EditText mEditTextName;
-        private EditText mEditTextAddress;
-        private TextView mTextViewResult;
+        private EditText mEditTextMessage;
+//        private URI mTextViewResult;
 
         private static final int PICK_FROM_CAMERA = 0;
         private static final int PICK_FROM_ALBUM = 1;
@@ -57,9 +60,30 @@ public class SendLoveActivity extends Activity implements View.OnClickListener {
         //        dbmanger = new DB_Manger();
                 iv_UserPhoto = (ImageView) this.findViewById(R.id.user_image);
                 Button btn_agreeJoin = (Button) this.findViewById(R.id.btn_UploadPicture);
+                mEditTextName = (EditText)findViewById(R.id.name);
+                mEditTextMessage = (EditText)findViewById(R.id.message);
+//                mTextViewResult = (URI) findViewById(R.id.user_image);
 
-                btn_agreeJoin.setOnClickListener(this);
-                }
+                Button buttonInsert = (Button)findViewById(R.id.btn_signupfinish);
+                buttonInsert.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                                String name = mEditTextName.getText().toString();
+                                String Message = mEditTextMessage.getText().toString();
+
+                                InsertData task = new InsertData();
+                                task.execute(name,Message);
+
+
+                                mEditTextName.setText("");
+                                mEditTextMessage.setText("");
+
+                        }
+                });
+
+
+
 
 
         /**
@@ -163,7 +187,7 @@ public class SendLoveActivity extends Activity implements View.OnClickListener {
                 SharedPreferences prefs = getSharedPreferences("login", 0);
                 /** prefs.getString() return값이 null이라면 2번째 함수를 대입한다. **/
                 String login = prefs.getString("USER_LOGIN", "LOGOUT");
-                String facebook_login = prefs.getString("FACEBOOK_LOGIN", "LOGOUT");
+//                String facebook_login = prefs.getString("FACEBOOK_LOGIN", "LOGOUT");
                 String user_id = prefs.getString("USER_ID","");
                 String user_name = prefs.getString("USER_NAME", "");
                 String user_password = prefs.getString("USER_PASSWORD", "");
@@ -172,6 +196,7 @@ public class SendLoveActivity extends Activity implements View.OnClickListener {
         //        dbmanger.select(user_id,user_name,user_password, user_phone, user_email);
         //        dbmanger.selectPhoto(user_name, mImageCaptureUri, absoultePath);
         //
+
         //        Intent mainIntent = new Intent(SignUpPhotoActivity.this, LoginActivity.class);
         //        SignUpPhotoActivity.this.startActivity(mainIntent);
         //        SignUpPhotoActivity.this.finish();
@@ -246,5 +271,98 @@ public class SendLoveActivity extends Activity implements View.OnClickListener {
                 e.printStackTrace();
                 }
                 }
-}
+        class InsertData extends AsyncTask<String, Void, String>{
+                ProgressDialog progressDialog;
+
+                @Override
+                protected void onPreExecute() {
+                        super.onPreExecute();
+
+                        progressDialog = ProgressDialog.show(MainActivity.this,
+                                "Please Wait", null, true, true);
+                }
+
+
+                @Override
+                protected void onPostExecute(String result) {
+                        super.onPostExecute(result);
+
+                        progressDialog.dismiss();
+//                                        mTextViewResult.setText(result);
+                        Log.d(TAG, "POST response  - " + result);
+                }
+
+
+                @Override
+                protected String doInBackground(String... params) {
+
+                        String name = (String)params[0];
+                        String Message = (String)params[1];
+
+                        String serverURL = "http://http://pois.pe.hu/addnew.php";
+                        String postParameters = "userName=" + name + "&userMSG=" + Message;
+
+
+                        try {
+
+                                URL url = new URL(serverURL);
+                                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                                httpURLConnection.setReadTimeout(5000);
+                                httpURLConnection.setConnectTimeout(5000);
+                                httpURLConnection.setRequestMethod("POST");
+                                //httpURLConnection.setRequestProperty("content-type", "application/json");
+                                httpURLConnection.setDoInput(true);
+                                httpURLConnection.connect();
+
+
+                                OutputStream outputStream = httpURLConnection.getOutputStream();
+                                outputStream.write(postParameters.getBytes("UTF-8"));
+                                outputStream.flush();
+                                outputStream.close();
+
+
+                                int responseStatusCode = httpURLConnection.getResponseCode();
+                                Log.d(TAG, "POST response code - " + responseStatusCode);
+
+                                InputStream inputStream;
+                                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                                        inputStream = httpURLConnection.getInputStream();
+                                }
+                                else{
+                                        inputStream = httpURLConnection.getErrorStream();
+                                }
+
+
+                                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                                StringBuilder sb = new StringBuilder();
+                                String line = null;
+
+                                while((line = bufferedReader.readLine()) != null){
+                                        sb.append(line);
+                                }
+
+
+                                bufferedReader.close();
+
+
+                                return sb.toString();
+
+
+                        } catch (Exception e) {
+
+                                Log.d(TAG, "InsertData: Error ", e);
+
+                                return new String("Error: " + e.getMessage());
+                        }
+
+                }
+        }
+
+
+
+                }
 
