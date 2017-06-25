@@ -191,6 +191,10 @@
 
              // *** Now crop from center to exact requested size
              $this->imageResized = imagecreatetruecolor($newWidth , $newHeight);
+             imagealphablending($this->imageResized, false);
+             imagesavealpha($this->imageResized,true);
+             $transparent = imagecolorallocatealpha($this->imageResized, 255, 255, 255, 127);
+             imagefilledrectangle($this->imageResized, 0, 0, $newWidth, $newHeight, $transparent);
              imagecopyresampled($this->imageResized, $crop , 0, 0, $cropStartX, $cropStartY, $newWidth, $newHeight , $newWidth, $newHeight);
          }
 
@@ -226,11 +230,11 @@
                      $invertScaleQuality = 8;
 
                      if (imagetypes() & IMG_PNG) {
-                          imagepng($this->imageResized, $savePath, $invertScaleQuality);
+                    imagepng($this->imageResized, $savePath, $invertScaleQuality);
                      }
                      break;
 
-                 // ... etc
+                //  ... etc
 
                  default:
                      // *** No extension - No save.

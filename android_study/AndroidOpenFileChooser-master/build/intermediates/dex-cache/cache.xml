@@ -2,40 +2,58 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\Users\user\.android\build-cache\ee2581321cdfaaf9d074f5b53fde1ea6a4ad6e53\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="D:\project\android_study\AndroidOpenFileChooser-master\app\build\intermediates\pre-dexed\debug\classes_183ada0173143e9f48ae94718748fa5e6e321ec7.jar" />
-    </item>
-    <item
-        is-multidex="false"
+        is-multidex="true"
         jar="C:\Users\user\.android\build-cache\ed90656372e0b09c9c7aad50feefbec6c97e4008\output\jars\classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="D:\project\android_study\AndroidOpenFileChooser-master\app\build\intermediates\pre-dexed\debug\classes_182db09325423cc601adae6bd7fa19b9fa9f70f0.jar" />
+        <dex dex="D:\project\android_study\AndroidOpenFileChooser-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_182db09325423cc601adae6bd7fa19b9fa9f70f0\classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
+        jar="D:\project\android_study\AndroidOpenFileChooser-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="25cf7b29f7781c7ba928d94dfd0976659b6226cc">
+        <dex dex="D:\project\android_study\AndroidOpenFileChooser-master\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_38205201c0d46e7a93679220a44e6b1e9ff876c4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\ee2581321cdfaaf9d074f5b53fde1ea6a4ad6e53\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="D:\project\android_study\AndroidOpenFileChooser-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_183ada0173143e9f48ae94718748fa5e6e321ec7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\user\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="D:\project\android_study\AndroidOpenFileChooser-master\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3_0242e03cd59fe7866a66bd4a95b67553c3e970c1.jar" />
+        <dex dex="D:\project\android_study\AndroidOpenFileChooser-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-21.0.3_0242e03cd59fe7866a66bd4a95b67553c3e970c1\classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
         jar="C:\Users\user\.android\build-cache\ee2581321cdfaaf9d074f5b53fde1ea6a4ad6e53\output\jars\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="D:\project\android_study\AndroidOpenFileChooser-master\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3_5599e10ed176259894c74bc47cefd4d7cb765ec0.jar" />
+        <dex dex="D:\project\android_study\AndroidOpenFileChooser-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-21.0.3_5599e10ed176259894c74bc47cefd4d7cb765ec0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\project\android_study\AndroidOpenFileChooser-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\project\android_study\AndroidOpenFileChooser-master\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_03b0d7aecf048fd0537f411613ab71e12b76f87d\classes.dex" />
     </item>
 
 </items>

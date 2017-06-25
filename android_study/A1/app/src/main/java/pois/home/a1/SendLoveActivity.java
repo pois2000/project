@@ -81,6 +81,8 @@ public class SendLoveActivity extends Activity implements View.OnClickListener {
 
                         }
                 });
+                }
+
 
 
 
@@ -278,8 +280,7 @@ public class SendLoveActivity extends Activity implements View.OnClickListener {
                 protected void onPreExecute() {
                         super.onPreExecute();
 
-                        progressDialog = ProgressDialog.show(MainActivity.this,
-                                "Please Wait", null, true, true);
+//                        progressDialog = ProgressDialog.show(this, "Please Wait", null, true, true);
                 }
 
 
@@ -364,5 +365,6 @@ public class SendLoveActivity extends Activity implements View.OnClickListener {
 
 
 
-                }
+}
+
 

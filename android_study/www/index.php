@@ -5,10 +5,13 @@
 	if(isset($_GET['delete_id']))
 	{
 		// select image from db to delete
-		$stmt_select = $DB_con->prepare('SELECT userPic FROM tbl_users WHERE userID =:uid');
+		$stmt_select = $DB_con->prepare('SELECT userPic, calleeTel, userSound FROM tbl_users WHERE userID =:uid');
 		$stmt_select->execute(array(':uid'=>$_GET['delete_id']));
-		$imgRow=$stmt_select->fetch(PDO::FETCH_ASSOC);
-		unlink("user_images/".$imgRow['userPic']);
+		$delRow=$stmt_select->fetch(PDO::FETCH_ASSOC);
+		// unlink("user/".$imgRow['userPic']);
+		unlink('user/'.$delRow['calleeTel'].'/img/'.$delRow['userPic']); //기존 파일 삭제
+		unlink('user/'.$delRow['calleeTel'].'/sound/'.$delRow['userSound']); //기존 파일 삭제
+
 
 		// it will delete an actual record from db
 		$stmt_delete = $DB_con->prepare('DELETE FROM tbl_users WHERE userID =:uid');
@@ -43,7 +46,7 @@
 <div class="row">
 <?php
 
-	$stmt = $DB_con->prepare('SELECT userID, userName, userMSG, userPic FROM tbl_users ORDER BY userID DESC');
+	$stmt = $DB_con->prepare('SELECT userID, calleeName, calleeTel, userName, userTel, userPic, userSound FROM tbl_users ORDER BY userID DESC');
 	$stmt->execute();
 
 	if($stmt->rowCount() > 0)
@@ -51,14 +54,19 @@
 		while($row=$stmt->fetch(PDO::FETCH_ASSOC))
 		{
 			extract($row);
+			$temp = explode('.', $row['userSound']); // 사운드 확장자 찾아내기
 			?>
 			<div class="col-xs-3">
-				<p class="page-header"><?php echo $userName."&nbsp;/&nbsp;".$userProfession; ?></p>
-				<img src="user_images/<?php echo $row['userPic']; ?>" class="img-rounded" width="100px" height="100px" />
+				<p class="page-header"><?php echo $userName."&nbsp;/&nbsp;".$userTel; ?></p>
+				<img src="user/<?php echo $row['calleeTel']."/img/".$row['userPic']; ?>" class="img-rounded" width="200px" height="300px" />
+				<audio controls>
+				  <source src="user/<?php echo $row['calleeTel']."/sound/".$row['userSound']; ?>"  type="audio/<?php echo $temp[1] ?>">
+				  Your browser does not support the audio tag.
+				</audio>
 				<p class="page-header">
 				<span>
-				<a class="btn btn-info" href="editform.php?edit_id=<?php echo $row['userID']; ?>" title="click for edit" onclick="return confirm('sure to edit ?')"><span class="glyphicon glyphicon-edit"></span> 수정</a>
-				<a class="btn btn-danger" href="?delete_id=<?php echo $row['userID']; ?>" title="click for delete" onclick="return confirm('sure to delete ?')"><span class="glyphicon glyphicon-remove-circle"></span> 삭제</a>
+				<a class="btn btn-info" href="editform.php?edit_id=<?php echo $row['userID']; ?>" title="click for edit"><span class="glyphicon glyphicon-edit"></span> 수정</a>
+				<a class="btn btn-danger" href="?delete_id=<?php echo $row['userID'];?>" title="click for delete" onclick="return confirm('sure to delete ?')"><span class="glyphicon glyphicon-remove-circle"></span> 삭제</a>
 				</span>
 				</p>
 			</div>
