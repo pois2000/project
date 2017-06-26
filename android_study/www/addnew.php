@@ -6,7 +6,7 @@
 	// *** In	clude the class
 	include("resize-class.php");
 	include("find_file_end_num.php");
-	// include("resizepng.php");
+	include("thumbnail.php");
 
 	if(isset($_POST['btnsave']))
 	{
@@ -34,9 +34,10 @@
 		else
 		{
 			$upload_dir = "user/".$calleeTel; // upload directory
+			if(is_dir(!$upload_dir)){   //디렉토리 존재 여부 확인 후 만들기
 				mkdir("user/".$calleeTel);
 				mkdir($upload_dir."/img");
-				mkdir($upload_dir."/sound");
+				mkdir($upload_dir."/sound");}
 
 			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
 			$sndExt = strtolower(pathinfo($sndFile,PATHINFO_EXTENSION)); // get sound extension
@@ -44,8 +45,8 @@
 			// valid image extensions
 			$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
 
-			$num = getFileNameList($upload_dir."/img"); //현재 디렉토리의  mole파일명 끝 찾기
-
+			$num = getFileNameList($upload_dir."/img")+1; //현재 디렉토리의  mole파일명 끝 찾기
+			$num = str_pad($num, 4, '0', STR_PAD_LEFT); //파일 번호를 0000포맷으로 변경
 			// rename uploading image
 			$userPic = "mole".$num.".".$imgExt;
 			$userSound = "mole".$num.".".$sndExt;
@@ -58,13 +59,21 @@
 				move_uploaded_file($tmp_dir,$upload_dir."/img/".$userPic);
 				move_uploaded_file($tmp_dir2,$upload_dir."/sound/".$userSound);
 
-				// *** 1) Initialise / load image
-					$resizeObj = new resize($upload_dir."/img/".$userPic);
+				$filepath = $upload_dir."/img/".$userPic;
+				$new_width = 200;
+				$new_height = 300;
 
+				if($imgExt=="png"){
+					pngresize($filepath,$new_width,$new_height);
+					}
+				else{
+					// *** 1) Initialise / load image
+					$resizeObj = new resize($filepath);
 					// *** 2) Resize image (options: exact, portrait, landscape, auto, crop)
-					$resizeObj -> resizeImage(200, 300, 'crop');
+					$resizeObj -> resizeImage($new_width, $new_height, 'crop');
 					// *** 3) Save image
-					$resizeObj -> saveImage($upload_dir.'/img/'.$userPic, 1000);
+					$resizeObj -> saveImage($filepath, 1000);
+				}
 
 				}
 				else{
@@ -91,7 +100,7 @@
 			if($stmt->execute())
 			{
 				$successMSG = "new record succesfully inserted ...";
-				header("refresh:1;index.php"); // redirects image view page after 5 seconds.
+				header("refresh:5;index.php"); // redirects image view page after 5 seconds.
 			}
 			else
 			{

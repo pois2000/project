@@ -6,7 +6,7 @@
 
 	include("resize-class.php");
 	include("find_file_end_num.php");
-	// include("resizepng.php");
+	include("thumbnail.php");
 
 	if(isset($_GET['edit_id']) && !empty($_GET['edit_id']))
 	{
@@ -71,15 +71,21 @@
 					}
 					move_uploaded_file($tmp_dir2,$upload_dir.'/sound/'.$userSound);
 
-					// *** 1) Initialise / load image
+					$filepath = $upload_dir."/img/".$userPic;
+					$new_width = 200;
+					$new_height = 300;
 
-						$resizeObj = new resize($upload_dir."/img/".$userPic);
-
+					if($imgExt=="png"){
+					 pngresize($filepath,$new_width,$new_height);
+					}
+					else{
+						// *** 1) Initialise / load image
+						$resizeObj = new resize($filepath);
 						// *** 2) Resize image (options: exact, portrait, landscape, auto, crop)
-						$resizeObj -> resizeImage(200, 300, 'crop');
+						$resizeObj -> resizeImage($new_width, $new_height, 'crop');
 						// *** 3) Save image
-						$resizeObj -> saveImage($upload_dir.'/img/'.$userPic, 1000);
-						// }
+						$resizeObj -> saveImage($filepath, 1000);
+					}
 				}
 				else
 				{
