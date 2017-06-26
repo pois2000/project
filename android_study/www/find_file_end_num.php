@@ -1,4 +1,4 @@
-<?
+<?php
 function getFileNameList($dir){
   $arr_filename = Array();
   if ($handle = opendir($dir)) { // 파일검색 디렉토리 지정

@@ -9,8 +9,8 @@
 		$stmt_select->execute(array(':uid'=>$_GET['delete_id']));
 		$delRow=$stmt_select->fetch(PDO::FETCH_ASSOC);
 		// unlink("user/".$imgRow['userPic']);
-		unlink('user/'.$delRow['calleeTel'].'/img/'.$delRow['userPic']); //기존 파일 삭제
-		unlink('user/'.$delRow['calleeTel'].'/sound/'.$delRow['userSound']); //기존 파일 삭제
+		unlink('../user/'.$delRow['calleeTel'].'/img/'.$delRow['userPic']); //기존 파일 삭제
+		unlink('../user/'.$delRow['calleeTel'].'/sound/'.$delRow['userSound']); //기존 파일 삭제
 
 
 		// it will delete an actual record from db
@@ -58,9 +58,9 @@
 			?>
 			<div class="col-xs-3">
 				<p class="page-header"><?php echo $userName."&nbsp;/&nbsp;".$userTel; ?></p>
-				<img src="user/<?php echo $row['calleeTel']."/img/".$row['userPic']; ?>" class="img-rounded" width="200px" height="300px" />
+				<img src="../user/<?php echo $row['calleeTel']."/img/".$row['userPic']; ?>" class="img-rounded" width="200px" height="300px" />
 				<audio controls>
-				  <source src="user/<?php echo $row['calleeTel']."/sound/".$row['userSound']; ?>"  type="audio/<?php echo $temp[1] ?>">
+				  <source src="../user/<?php echo $row['calleeTel']."/sound/".$row['userSound']; ?>"  type="audio/<?php echo $temp[1] ?>">
 				  Your browser does not support the audio tag.
 				</audio>
 				<p class="page-header">

@@ -35,10 +35,12 @@
 		{
 			$upload_dir = "user/".$calleeTel; // upload directory
 			if(is_dir(!$upload_dir)){   //디렉토리 존재 여부 확인 후 만들기
-				mkdir("user/".$calleeTel);
-				mkdir($upload_dir."/img");
-				mkdir($upload_dir."/sound");}
-
+				mkdir("user",0755,true);
+				mkdir("user/".$calleeTel,0755,true);
+				mkdir($upload_dir."/img",0755,true);
+				mkdir($upload_dir."/sound",0755,true);
+			}
+//
 			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
 			$sndExt = strtolower(pathinfo($sndFile,PATHINFO_EXTENSION)); // get sound extension
 
@@ -100,7 +102,7 @@
 			if($stmt->execute())
 			{
 				$successMSG = "new record succesfully inserted ...";
-				header("refresh:5;index.php"); // redirects image view page after 5 seconds.
+				header("refresh:0;index.php"); // redirects image view page after 5 seconds.
 			}
 			else
 			{

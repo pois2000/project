@@ -1,9 +1,13 @@
 <?php
 
-	$DB_HOST = "mysql.hostinger.kr";
-	$DB_USER = "u984921315_pois";
-	$DB_PASS = "shekwl11";
-	$DB_NAME = "u984921315_test";
+	$DB_HOST = "localhost";
+	// $DB_HOST = "mysql.hostinger.kr";
+	$DB_USER = "id2006562_pois";
+	// $DB_USER = "u984921315_pois";
+	$DB_PASS = "shekwl";
+	// $DB_PASS = "shekwl11";
+	$DB_NAME = "id2006562_table_test";
+	// $DB_NAME = "u984921315_test";
 
 
 	try{

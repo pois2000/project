@@ -1,4 +1,4 @@
-<?
+<?php
 # ========================================================================#
 #  Requires : Requires PHP5, GD library.
 #  Usage Example:
@@ -16,6 +16,7 @@
          private $imageResized;
          function __construct($fileName)
          {
+             $this->fixOrientation($fileName);
              // *** Open up the file
              $this->image = $this->openImage($fileName);
              // *** Get width and height
@@ -23,6 +24,29 @@
              $this->height = imagesy($this->image);
          }
          ## --------------------------------------------------------
+         private function fixOrientation($filename) {
+
+                 $image = imagecreatefromjpeg($filename);
+                 $exif = exif_read_data($filename);
+                 if (!empty($exif['Orientation'])) {
+                     switch ($exif['Orientation']) {
+                         case 3:
+                             $image = imagerotate($image, 180, 0);
+                             break;
+                         case 6:
+                             $image = imagerotate($image, -90, 0);
+                             break;
+                         case 8:
+                             $image = imagerotate($image, 90, 0);
+                             break;
+                     }
+                 }
+                 imagejpeg($image, $filename);
+
+             }
+
+
+
          private function openImage($file)
          {
              // *** Get extension
