@@ -9,8 +9,8 @@
 		$stmt_select->execute(array(':uid'=>$_GET['delete_id']));
 		$delRow=$stmt_select->fetch(PDO::FETCH_ASSOC);
 		// unlink("user/".$imgRow['userPic']);
-		unlink('../user/'.$delRow['calleeTel'].'/img/'.$delRow['userPic']); //기존 파일 삭제
-		unlink('../user/'.$delRow['calleeTel'].'/sound/'.$delRow['userSound']); //기존 파일 삭제
+		unlink('user/'.$delRow['calleeTel'].'/img/'.$delRow['userPic']); //기존 파일 삭제
+		unlink('user/'.$delRow['calleeTel'].'/sound/'.$delRow['userSound']); //기존 파일 삭제
 
 
 		// it will delete an actual record from db

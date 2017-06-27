@@ -17,7 +17,12 @@ function getFileNameList($dir){
   // print_r($arr_filename);
   // $lastcount = count($arr_filename);
   $lastfilename = end($arr_filename);
+  if($lastfilename!=""){
   $num = preg_replace("/[^0-9]*/s", "", $lastfilename);
+}
+else {
+  $num=-1;
+}
   // echo "last file name: ".$lastfilename."<br />last count:".$lastcount."<br />file name is num?".is_numeric($num);
   return $num; //마지막 숫자 리턴
 }

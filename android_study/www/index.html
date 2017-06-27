@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,6 +24,7 @@
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	};
 
+  var who = "01042583351";
 	var game = (function() {
 		var canvas;
 		var score = 0;
@@ -53,7 +53,7 @@
 					$("#score").html(score);
 					mole.state = "dead";
           //play sound
-          new Audio('sound/mole'+mole.imgid+'.mp3').play();
+          new Audio('user/'+who+'/sound/mole000'+(mole.imgid+1)+'.mp3').play();
 					mole.element.removeClass("visible").addClass("dead");
 					mole.whack.addClass("visible");
 					mole.whackTtl = 150;
@@ -74,7 +74,7 @@
 				moleContainer.appendTo(canvas);
 
 				// Create image
-				var moleImg = $("<img></img>", {id: "Mole_"+i, class:'mole hidden', src:'image/mole' + i + '.png'})
+				var moleImg = $("<img></img>", {id: "Mole_"+i, class:'mole hidden', src:'user/'+who+'/img/mole000' + (i+1) + '.png'})
 				moleImg.bind('dragstart', function(){ return false; });
 				moleImg.click(createClickHandler(i));
 				moleImg.appendTo(moleContainer);
@@ -139,7 +139,7 @@
 				if (mole.state == "dead")
 				{
           mole.imgid = getRandomInt(0, moleCount-1);
-          $("#Mole_" + mole.id).attr("src", 'image/mole' + mole.imgid + '.png');
+          $("#Mole_" + mole.id).attr("src", 'user/'+who+'/img/mole000' + (mole.imgid+1) + '.png');
 					mole.state = "alive";
 					mole.element.removeClass("hidden").removeClass("dead").addClass("visible");
 					mole.timer = getRandomInt(100, 3000);
@@ -199,7 +199,7 @@
 
 </script>
 
-<h1>
+<!-- <h1>
 <a href=file:///android_asset/www/index.asp>이미지 업로드 테스트</a>
 <a href=https://m.daum.net>다음</a>
 <a href=https://m.facebook.com>페북</a>
@@ -211,6 +211,6 @@
 <input type="file" accept="image/*;capture=camera"><br />
 후<br/>
 <input type="file" accept="image/*" capture="camera"> <br/>
-</h1>
+</h1> -->
 </body>
 </html>
