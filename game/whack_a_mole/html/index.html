@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="whackathon.css">
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   </head>
-  <body>
+  <body onload=game();>
 	<div id="main">
 		<div id="header">
 			<h1>승화네 따라잡기</h1>
@@ -20,7 +20,7 @@
 	</div>
 
 <script>
-(function() {
+(function game() {
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	};

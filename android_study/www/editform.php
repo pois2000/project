@@ -24,7 +24,7 @@
 	}
 	else
 	{
-		header("Location: index.php");
+		header("Location: view2.php");
 	}
 
 	if(isset($_POST['btn_save_updates']))
@@ -66,11 +66,11 @@
 					unlink($upload_dir.'/img/'.$edit_row['userPic']); //기존 파일 삭제
 					move_uploaded_file($tmp_dir,$upload_dir.'/img/'.$userPic);
 
-					if(!$userSound){
+					if(!$sndExt){
 						unlink($upload_dir.'/sound/'.$edit_row['userSound']); //기존 파일 삭제
+						move_uploaded_file($tmp_dir2,$upload_dir.'/sound/'.$userSound);
 					}
-					move_uploaded_file($tmp_dir2,$upload_dir.'/sound/'.$userSound);
-
+					else{$userSound="";}
 					$filepath = $upload_dir."/img/".$userPic;
 					$new_width = 200;
 					$new_height = 300;
@@ -122,7 +122,7 @@
 				?>
         <script>
 				alert('Successfully Updated ...');
-				window.location.href='index.php';
+				window.location.href='view2.php';
 				</script>
                 <?php
 			}

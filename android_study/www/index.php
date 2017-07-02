@@ -1,91 +1,208 @@
+
+
 <?php
+    require_once 'dbconfig.php';
+    $who = (string)$_GET['who'];
+    if($who){
+        $result = $DB_con->prepare("SELECT * FROM `tbl_users` WHERE calleeTel = '".$who."'");
+        $result->execute();
+        $count = $result->rowCount();
+        if($count > 0)
+        {
+          while($row=$result->fetch(PDO::FETCH_ASSOC))
+          {
+            extract($row);
+            $images[]=$row['userPic'];
+            $sounds[]=$row['userSound'];
+            $names[]=$row['userName'];
+            // $tels[]=$row['userTel'];
 
-	require_once 'dbconfig.php';
-
-	if(isset($_GET['delete_id']))
-	{
-		// select image from db to delete
-		$stmt_select = $DB_con->prepare('SELECT userPic, calleeTel, userSound FROM tbl_users WHERE userID =:uid');
-		$stmt_select->execute(array(':uid'=>$_GET['delete_id']));
-		$delRow=$stmt_select->fetch(PDO::FETCH_ASSOC);
-		// unlink("user/".$imgRow['userPic']);
-		unlink('user/'.$delRow['calleeTel'].'/img/'.$delRow['userPic']); //기존 파일 삭제
-		unlink('user/'.$delRow['calleeTel'].'/sound/'.$delRow['userSound']); //기존 파일 삭제
-
-
-		// it will delete an actual record from db
-		$stmt_delete = $DB_con->prepare('DELETE FROM tbl_users WHERE userID =:uid');
-		$stmt_delete->bindParam(':uid',$_GET['delete_id']);
-		$stmt_delete->execute();
-
-		header("Location: index.php");
-	}
-
+          }
+        }
+      }
+      $tel=preg_replace("/(0(?:2|[0-9]{2}))([0-9]+)([0-9]{4}$)/", "\\1-\\2-\\3", $who);
 ?>
+
 <html>
+
 <head>
-<title>Upload, Insert, Update, Delete an Image using PHP MySQL - Coding Cage</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <title><?php echo $tel?>가 받은 롤링 페이퍼</title>
+  <link rel="stylesheet" href="style.css?v=<?=time();?>">
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 
 <body>
-
-<div class="container">
-
-	<div class="page-header">
-    	<h1 class="h2">누구나 / <a class="btn btn-default" href="addnew.php">
-				<span class="glyphicon glyphicon-plus"></span> &nbsp; 사진추가 </a></h1>
+  <div data-role="page" class="background-image"></div>
+  <div data-role="header" id="header">
+    <h1><?php echo $tel?>(<?php echo $count?>)</h1>
+    <div id="scorebox">SCORE <span id="score">0</span></div>
+  </div>
+  <div id="main" class="content">
+      <div id="canvas" data-role="main" class="ui-content">
     </div>
-
-<br />
-
-<div class="row">
-<?php
-
-	$stmt = $DB_con->prepare('SELECT userID, calleeName, calleeTel, userName, userTel, userPic, userSound FROM tbl_users ORDER BY userID DESC');
-	$stmt->execute();
-
-	if($stmt->rowCount() > 0)
-	{
-		while($row=$stmt->fetch(PDO::FETCH_ASSOC))
-		{
-			extract($row);
-			$temp = explode('.', $row['userSound']); // 사운드 확장자 찾아내기
-			?>
-			<div class="col-xs-3">
-				<p class="page-header"><?php echo $userName."&nbsp;/&nbsp;".$userTel; ?></p>
-				<img src="../user/<?php echo $row['calleeTel']."/img/".$row['userPic']; ?>" class="img-rounded" width="200px" height="300px" />
-				<audio controls>
-				  <source src="../user/<?php echo $row['calleeTel']."/sound/".$row['userSound']; ?>"  type="audio/<?php echo $temp[1] ?>">
-				  Your browser does not support the audio tag.
-				</audio>
-				<p class="page-header">
-				<span>
-				<a class="btn btn-info" href="editform.php?edit_id=<?php echo $row['userID']; ?>" title="click for edit"><span class="glyphicon glyphicon-edit"></span> 수정</a>
-				<a class="btn btn-danger" href="?delete_id=<?php echo $row['userID'];?>" title="click for delete" onclick="return confirm('sure to delete ?')"><span class="glyphicon glyphicon-remove-circle"></span> 삭제</a>
-				</span>
-				</p>
-			</div>
-			<?php
-		}
-	}
-	else
-	{
-		?>
-        <div class="col-xs-12">
-        	<div class="alert alert-warning">
-            	<span class="glyphicon glyphicon-info-sign"></span> &nbsp; No Data Found ...
-            </div>
-        </div>
-        <?php
-	}
-
-?>
+  </div>
+  </div>
+<div id="btn_group">
+  <a href="#" class="btn">Reply</a>
+  <a href="#" class="btn">Share</a>
+  <a href="addnew.php?userTel=<?=$who?>" class="btn" target=new>New!</a>
 </div>
 </div>
+  <script>
+    (function() {
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      };
+
+      var who = "<?php echo $who?>";
+      var len= <?php echo count($images)?>;
+      var images= [<?php echo '"'.implode('","', $images).'"' ?>];
+      var sounds = [<?php echo '"'.implode('","', $sounds).'"' ?>];
+      var game = (function() {
+        var canvas;
+        var score = 0;
+        var running = 0;
+        var moles = [];
+        var moleCount=9;
+        var hypes = [<?php echo '"'.implode('","', $names).'"' ?>];
+
+        createClickHandler = function(i) {
+          return function() {
+            var mole = moles[i];
+            if (mole.state == "alive") {
+              score++;
+              $("#score").html(score);
+              mole.state = "dead";
+              //play sound
+              new Audio('user/' + who + '/sound/' + sounds[mole.imgid]).play();
+              mole.element.removeClass("visible").addClass("dead");
+              mole.whack.addClass("visible");
+              mole.whackTtl = 150;
+              mole.timer = getRandomInt(1000, 6000);
+            }
+          };
+        };
+        init = function(parentId) {
+          canvas = $("#" + parentId);
+          for (var i = 0; i < moleCount; i++) {
+            // Create mole container
+            var moleContainer = $("<div class='mole_container'/>", {
+              id: "MoleContainer_" + i
+            });
+            moleContainer.appendTo(canvas);
+
+            // Create image
+            var moleImg = $("<img></img>", {
+              id: "Mole_" + i,
+              class: 'mole hidden',
+              src: 'user/' + who + '/img/' + images[i]
+            })
+            moleImg.bind('dragstart', function() {
+              return false;
+            });
+            moleImg.click(createClickHandler(i));
+            moleImg.appendTo(moleContainer);
+
+            // Add a hype
+            var molehype = $("<div class='hype'>" + hypes[i] + "</div>", {
+              id: "MoleHype" + i
+            });
+            molehype.appendTo(moleContainer);
+
+            // Add the whack =)
+            var whackImg = $("<img></img>", {
+              id: "Whack_" + 1,
+              class: 'whack',
+              src: "image/whack.png"
+            });
+            whackImg.appendTo(moleContainer);
+            // Create the mole
+            var mole = {
+              id: i,
+              state: "dead",
+              element: moleImg,
+              imgid: i,
+              whack: whackImg,
+              whackTtl: 0,
+              timer: getRandomInt(1000, 2000)
+            };
+            moles.push(mole);
+          }
+        };
+        start = function() {
+          running = 1;
+          delta = 0;
+          lastFrameTimeMs = 0;
+          requestAnimationFrame(gameloop);
+        };
+        stop = function() {
+          running = 0;
+        };
+        update = function(step) {
+          for (var i = 0; i < moleCount; i++) {
+            var mole = moles[i];
+            // Hide the whack
+            if (mole.whackTtl > 0) {
+              mole.whackTtl -= step;
+              if (mole.whackTtl <= 0) {
+                mole.whack.removeClass("visible");
+                mole.whackTtl = 0;
+              }
+            }
+            // Mole lifetime events
+            mole.timer -= step;
+            if (mole.timer <= 0) {
+              if (mole.state == "dead") {
+                mole.imgid = getRandomInt(0, len - 1);
+                $("#Mole_" + mole.id).attr("src", 'user/' + who + '/img/' + images[mole.imgid]);
+                mole.state = "alive";
+                mole.element.removeClass("hidden").removeClass("dead").addClass("visible");
+                mole.timer = getRandomInt(250, 3000);
+              } else {
+                mole.state = "dead";
+                mole.element.removeClass("visible").addClass("hidden");
+                mole.timer = getRandomInt(250, 5000);
+              }
+            }
+          }
+        };
+        render = function() {};
+        var timestep = 3000 / 25;
+        var lastFrameTimeMs = 0;
+        var delta = 0;
+        gameloop = function(timestamp) {
+          delta += timestamp - lastFrameTimeMs;
+          lastFrameTimeMs = timestamp;
+          while (delta >= timestep) {
+            update(timestep);
+            delta = -timestep;
+          }
+          //render();
+          if (running)
+            requestAnimationFrame(gameloop);
+        };
+
+        return {
+          initialize: init,
+          start: start,
+          stop: stop
+        };
+
+
+  	})();
+      $(function() {
+        $(".mole").click(function() {
+          $(this).removeClass("visible").addClass("hidden");
+        });
+        game.initialize("canvas");
+        game.start();
+      });
+    })();
+
+  </script>
 </body>
+
 </html>

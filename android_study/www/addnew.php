@@ -22,6 +22,7 @@
 		$sndFile = $_FILES['user_sound']['name'];
 		$tmp_dir2 = $_FILES['user_sound']['tmp_name'];
 
+		// $DB_con->query("SELECT calleeTel FROM tbl_users WHERE $who");
 		if(empty($userName)){
 			$errMSG = "당신의 이름을 입력해주세요.";
 		}
@@ -51,8 +52,8 @@
 			$num = str_pad($num, 4, '0', STR_PAD_LEFT); //파일 번호를 0000포맷으로 변경
 			// rename uploading image
 			$userPic = "mole".$num.".".$imgExt;
-			$userSound = "mole".$num.".".$sndExt;
-
+			if($sndExt){$userSound = "mole".$num.".".$sndExt;}
+			else{$userSound="";}
 			// allow valid image file formats
 			if(in_array($imgExt, $valid_extensions)){
 				// Check file size '5MB'
@@ -102,7 +103,7 @@
 			if($stmt->execute())
 			{
 				$successMSG = "new record succesfully inserted ...";
-				header("refresh:1;index.php"); // redirects image view page after 5 seconds.
+				header("refresh:1;view2.php"); // redirects image view page after 5 seconds.
 			}
 			else
 			{
