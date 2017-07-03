@@ -1,5 +1,5 @@
 <?php
-
+	$tempnum = (string)$_GET['calleeTel'];
 	error_reporting( ~E_NOTICE ); // avoid notice
 
 	require_once 'dbconfig.php';
@@ -115,7 +115,7 @@
 
 <html>
 <head>
-<title>Upload, Insert, Update, Delete an Image using PHP MySQL - Coding Cage</title>
+<title>LoveRoll 새메시지 작성</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -128,8 +128,8 @@
 
 
 	<div class="page-header">
-    	<h1 class="h2">add new user. <a class="btn btn-default" href="index.php">
-				<span class="glyphicon glyphicon-eye-open"></span> &nbsp; view all </a></h1>
+    	<h1 class="h2">친구에게 LoveRoll 보내기 <a class="btn btn-default" href="index.php">
+				<span class="glyphicon glyphicon-eye-open"></span> &nbsp; 친구들 메시지 보기 </a></h1>
     </div>
 
 
@@ -150,7 +150,6 @@
         <?php
 	}
 	?>
-
 <form method="post" enctype="multipart/form-data">
 
   <div class="form-group">
@@ -169,7 +168,7 @@
   </div>
 	<div class="form-group">
 		<label class="control-label">친구 번호</label>
-		<input class="form-control" type="text" name="callee_tel" placeholder="선물받을 사람 전화번호"  />
+		<input class="form-control" type="text" name="callee_tel" value="<?php echo $tempnum;?>" placeholder="선물받을 사람 전화번호"  />
   </div>
 
 	<div class="form-group">

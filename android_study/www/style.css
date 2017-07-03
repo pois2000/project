@@ -4,28 +4,6 @@ html, body {
 
 body {}
 
-.background-image {
-  z-index: 0;
-  display: block;
-  background-image: url('image/daisy.jpg');
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  -webkit-filter: blur(2px);
-  filter: blur(2px);
-  position:absolute;
-
-}
-
-.content {
-  position: absolute;
-  top:10vh;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
-
-
 img {
   border-radius: 50%;
   -webkit-user-drag: none;
@@ -34,7 +12,6 @@ img {
   -o-user-drag: none;
   user-drag: none;
 }
-
 
 div {
   box-sizing: border-box;
@@ -46,99 +23,120 @@ div {
   user-select: none;
 }
 
-#main {
-  width: 100%;
-  height: 90vh;
-  background: linear-gradient(30deg, rgba(255, 0, 148, 0.65),rgba(0, 255, 230, 0.42),white);
+a {
+  text-decoration: none;
+}
+
+#background-image {
+  display: block;
+  background-image: url('image/daisy.jpg');
+  width: 100vw;
+  height: 200px;
+  background-size: cover;
+/*   position: fixed; */
 }
 
 #header {
-  padding:2vw;
-  position: absolute;
-  height: 10vh;
-  width:100%;
-  background: rgb(186, 102, 136);
-  z-index: 1;
-}
-
-h1 {
-  font-size: 5vh;
-  color:white;
-  position: absolute;
-  padding:4px;
-  bottom:-2vh;
-}
-
-h2 {
-  font-size: 4vh;
-  color:white;
-  position: absolute;
-  padding:4px;
-  bottom:-2vh;
-}
-#message{
-  z-index: 1;
   display: block;
-  background-image: url('image/loveroll.jpg');
+  background: linear-gradient(30deg, rgba(255, 0, 148, 0.65), rgba(0, 255, 230, 0.42), white);
   width: 100vw;
-  height: 30vh;
-  background-size: cover;
-  position:absolute;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
 }
+
 #btn_group {
-  z-index : 999;
-  bottom:0;
-  width:100%;
-  position:fixed;
+  float: left;
 }
 
-.btn{
-    background-color: rgba(255, 254, 254, 0.33);
-    border: none;
-    color: white;
-    padding: 2.5vw 1vh;
-    text-align: center;
-    display: inline-block;
-    font-size: 4.5vw;
-    margin: 1vw;
-    width:29vw;
-    border-radius: 10vh;
-}
-
-#score {
-  font-size: 3vh;
-  color:white;
+.btn {
+  color: white;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Lobster', cursive;
+  margin: 1vw;
+  width: 20vw;
+  border-radius: 10vh;
+  border: solid 2px white;
+  text-shadow: 2px 2px #388002;
+  float: left;
+  height: 7hv
 }
 
 #scorebox {
-  position: inherit;
-  right: 1.3vw;
-  top: 1.3vh;
-  border: solid 2px white;
-  width: 12vw;
-  font-size: 2vh;
-  text-align: center;
-  border-radius: 5px;
-  color:white;
+  float: right;
+  width: 20vw;
+  font-size: 15px;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px #388002;
+  font-family: 'Lobster', cursive;
 }
 
+.score {
+  font-size: 30px;
+  color: rgb(170, 242, 9);
+  font-weight: lighter;
+  text-shadow: 1px 1px #388002;
+}
+
+#logo_message {
+  position: relative;
+  /*   height:25%; */
+}
+
+h1 {
+  padding: 10px;
+  font-size: 50px;
+  text-shadow: 2px 3px #4e4e4e;
+  color: white;
+  text-align: center;
+  font-family: 'Lobster', cursive;
+}
+
+p {
+  margin: -25;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+}
+
+#main {
+/*   width: 100%; */
+/*   height: 300%; */
+/*   background: linear-gradient(30deg, rgba(255, 0, 148, 0.65), rgba(0, 255, 230, 0.42), white); */
+  padding-top: 20px;
+}
+
+.content {
+  top: 10vh;
+  left: 0;
+  right: 0;
+  bottom: 10vh;
+
+/*   z-index: 1; */
+}
 
 .mole_container {
   position: relative;
-  background: rgba(0, 0, 0, 0.7);
-  margin: 2%;
+  background: rgba(134, 134, 134, 0.5);
+  margin: 1%;
   float: left;
   overflow: hidden;
   border-radius: 50%;
-  border: 3px dashed rgb(255, 0, 135);
-
+  border: 3px dashed rgba(255, 255, 255, 0.64);
 }
 
 .hype {
-  text-align:center;
-  position:relative;
-  font-size: 4vw;
-  color: rgb(249, 249, 249);
+  position: absolute;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+  left: 0;
+  top: 0;
+  background-color: rgba(255, 0, 78, 0.58);
+  width: 100%;
 }
 
 .mole {
@@ -162,7 +160,8 @@ h2 {
 .mole.dead {
   transition: bottom 0.2s linear;
   bottom: -100%;
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
 
@@ -181,15 +180,50 @@ h2 {
 @media all and (orientation:portrait) {
   .mole_container {
     /* 3x3 */
-    width: 20vh;
-    height: 20vh;
+    width: 30vw;
+    height: 30vw;
   }
 }
 
 @media all and (orientation:landscape) {
   .mole_container {
     /* 3x3 */
-    width: 20vh;
-    height: 20vh;
+    width: 30vh;
+    height: 30vh;
+  }
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -1,5 +1,3 @@
-
-
 <?php
     require_once 'dbconfig.php';
     $who = (string)$_GET['who'];
@@ -15,11 +13,15 @@
             $images[]=$row['userPic'];
             $sounds[]=$row['userSound'];
             $names[]=$row['userName'];
+            // $calleeName[]=$row['calleeName'];
             // $tels[]=$row['userTel'];
 
           }
         }
       }
+      else{
+        header('refresh:0;index.php?who=01042583351');
+        }
       $tel=preg_replace("/(0(?:2|[0-9]{2}))([0-9]+)([0-9]{4}$)/", "\\1-\\2-\\3", $who);
 ?>
 
@@ -27,30 +29,45 @@
 
 <head>
   <meta charset="utf-8">
-  <title><?php echo $tel?>가 받은 롤링 페이퍼</title>
+  <title>
+    <?php echo $tel?>님의 러브롤</title>
   <link rel="stylesheet" href="style.css?v=<?=time();?>">
-  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-</head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 
+</head>
+<script>
+var _showPage = $(function() {
+  var loader = $("div.loader");
+  var container = $("div.container");
+  loader.css("display","none");
+  container.css("display","block");
+})();
+</script>
 <body>
-  <div data-role="page" class="background-image"></div>
-  <div data-role="header" id="header">
-    <h1><?php echo $tel?>(<?php echo $count?>)</h1>
-    <div id="scorebox">SCORE <span id="score">0</span></div>
-  </div>
-  <div id="main" class="content">
-      <div id="canvas" data-role="main" class="ui-content">
+  <div class="loader"></div>
+  <div class="container" id="background-image">
+    <div id="header">
+      <div id="btn_group">
+        <a href="#" class="btn">Reply</a>
+        <a href="#" class="btn">Share</a>
+        <a href="addnew.php" class="btn" target=new>New!</a>
+      </div>
+      <div id="scorebox">SCORE <span class="score">0</span>
+      </div>
+      <div id="logo_message">
+        <h1>LoveRoll</h1>
+        <p><?php echo $tel?>님<br />
+        친구들이 보내온 LoveRoll을 눌러 보세요!</p>
     </div>
   </div>
+  <div id="main" class="content">
+      <div id="canvas">
+    </div>
   </div>
-<div id="btn_group">
-  <a href="#" class="btn">Reply</a>
-  <a href="#" class="btn">Share</a>
-  <a href="addnew.php?userTel=<?=$who?>" class="btn" target=new>New!</a>
 </div>
-</div>
+
   <script>
     (function() {
       function getRandomInt(min, max) {
@@ -66,7 +83,7 @@
         var score = 0;
         var running = 0;
         var moles = [];
-        var moleCount=9;
+        var moleCount=len;
         var hypes = [<?php echo '"'.implode('","', $names).'"' ?>];
 
         createClickHandler = function(i) {
