@@ -94,7 +94,10 @@ var _showPage = $(function() {
               $("#score").html(score);
               mole.state = "dead";
               //play sound
-              new Audio('user/' + who + '/sound/' + sounds[mole.imgid]).play();
+              var audio = new Audio();
+              audio.src = 'user/' + who + '/sound/' + sounds[mole.imgid];
+              audio.preload = "auto"; //미리 읽도록 시킴
+              audio.play();
               mole.element.removeClass("visible").addClass("dead");
               mole.whack.addClass("visible");
               mole.whackTtl = 150;

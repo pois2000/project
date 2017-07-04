@@ -1,5 +1,5 @@
 <?php
-// Muaz Khan     - www.MuazKhan.com 
+// Muaz Khan     - www.MuazKhan.com
 // MIT License   - https://www.webrtc-experiment.com/licence/
 // Documentation - https://github.com/muaz-khan/RecordRTC
 
@@ -11,10 +11,10 @@ function selfInvoker()
         echo 'PermissionDeniedError';
         return;
     }
-    
+
     $fileName = '';
     $tempName = '';
-    
+
     if (isset($_POST['audio-filename'])) {
         $fileName = $_POST['audio-filename'];
         $tempName = $_FILES['audio-blob']['tmp_name'];
@@ -22,14 +22,14 @@ function selfInvoker()
         $fileName = $_POST['video-filename'];
         $tempName = $_FILES['video-blob']['tmp_name'];
     }
-    
+
     if (empty($fileName) || empty($tempName)) {
         echo 'PermissionDeniedError';
         return;
     }
 
     $filePath = 'uploads/' . $fileName;
-    
+
     // make sure that one can upload only allowed audio/video files
     $allowed = array(
         'webm',
@@ -43,12 +43,12 @@ function selfInvoker()
         echo 'PermissionDeniedError';
         continue;
     }
-    
+
     if (!move_uploaded_file($tempName, $filePath)) {
         echo ('Problem saving file.');
         return;
     }
-    
+
     echo ($filePath);
 }
 
