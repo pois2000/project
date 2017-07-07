@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+<title>KakaoLink v2 Demo(Default / Feed) - Kakao JavaScript SDK</title>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+</head>
+<body>
+<a id="kakao-link-btn" href="javascript:;">
+<img src="//dev.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"/>
+</a>
+<script type='text/javascript'>
+  //<![CDATA[
+    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('5d6d758293c83acfb5dc65125d58a244');
+    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createDefaultButton({
+      container: '#kakao-link-btn',
+      objectType: 'feed',
+      content: {
+        title: '러브롤 함께하기',
+        description: '#사랑 #롤링페이퍼 #우정 #축하 #감사',
+        imageUrl: 'https://pois.000webhostapp.com/image/LoveRollicon.jpg',
+        link: {
+          mobileWebUrl: 'https://pois.000webhostapp.com',
+          webUrl: 'https://pois.000webhostapp.com'
+        }
+      },
+      social: {
+        likeCount: 286,
+        commentCount: 45,
+        sharedCount: 845
+      },
+      buttons: [
+        {
+          title: '웹으로 보기',
+          link: {
+            mobileWebUrl: 'https://pois.000webhostapp.com target=_blank',
+            webUrl: 'https://pois.000webhostapp.com'
+          }
+        },
+        {
+          title: '앱으로 보기',
+          link: {
+            mobileWebUrl: 'https://pois.000webhostapp.com',
+            webUrl: 'https://pois.000webhostapp.com'
+          }
+        }
+      ]
+    });
+  //]]>
+</script>
+
+</body>
+</html>

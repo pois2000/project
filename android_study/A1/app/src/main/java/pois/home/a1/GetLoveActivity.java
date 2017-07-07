@@ -138,8 +138,8 @@ public class GetLoveActivity extends Activity {
             webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
 
-        webView.loadUrl("file:///android_asset/www/index.html");
-//        webView.loadUrl("http://pois.pe.hu/whack/");
+//        webView.loadUrl("file:///android_asset/www/index.html");
+        webView.loadUrl("https://pois.000webhostapp.com");
     }
 
     private File createImageFile() throws IOException {

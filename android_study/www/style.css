@@ -24,7 +24,8 @@ div {
 }
 
 a {
-  text-decoration: none;
+  /*text-decoration: none;*/
+  color:white;
 }
 
 #background-image {
@@ -74,7 +75,7 @@ a {
   font-family: 'Lobster', cursive;
 }
 
-.score {
+#score {
   font-size: 30px;
   color: rgb(170, 242, 9);
   font-weight: lighter;
@@ -198,14 +199,14 @@ p {
   left: 50%;
   top: 50%;
   z-index: 1;
-  width: 150px;
-  height: 150px;
-  margin: -75px 0 0 -75px;
+  width: 50px;
+  height: 50px;
+  margin: -25px 0 0 -25px;
   border: 16px solid #f3f3f3;
   border-radius: 50%;
   border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
+  width: 60px;
+  height: 60px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }

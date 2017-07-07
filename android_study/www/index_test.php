@@ -2,7 +2,7 @@
     require_once 'dbconfig.php';
     $calleeTel = (string)$_GET['calleeTel'];
     if($calleeTel){
-        $result = $DB_con->prepare("SELECT * FROM `tbl_users` WHERE calleeTel = '".$calleeTel."'");
+        $result = $DB_con->prepare("SELECT * FROM `media_table` WHERE calleeTel = '".$calleeTel."'");
         $result->execute();
         $count = $result->rowCount();
         if($count > 0)
@@ -13,7 +13,7 @@
             $images[]=$row['userPic'];
             $sounds[]=$row['userSound'];
             $names[]=$row['userName'];
-            $calleeName[]=$row['calleeName'];
+            //$calleeName[]=$row['calleeName'];
             $tels[]=$row['userTel'];
           }
         }
@@ -51,7 +51,13 @@
   <script>
 var b = "";
 var ua = window.navigator.userAgent;
-if(ua.indexOf('wv') > 0)  alert("여기서는 안보여요.메뉴(점3개)누른 뒤 다른 브라우저로 열기를 누르세요.");
+if(ua.indexOf('KAKAOTALK') > 0) {
+ if(ua.indexOf('wv') > 0)
+  b = "webview";
+}
+if (b=="webview"){
+  alert("카카오톡에서는 안보여요.메뉴(점3개)누른 뒤 다른 브라우저로 열기를 누르세요.")
+}
 </script>
   <div class="container" id="background-image">
     <div id="header">

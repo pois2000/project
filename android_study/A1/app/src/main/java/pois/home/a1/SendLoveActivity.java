@@ -300,8 +300,8 @@ public class SendLoveActivity extends Activity implements View.OnClickListener {
                         String name = (String)params[0];
                         String Message = (String)params[1];
 
-                        String serverURL = "http://http://pois.pe.hu/addnew.php";
-                        String postParameters = "userName=" + name + "&userMSG=" + Message;
+                        String serverURL = "https:/pois.000webhestapp.com/addnew.php";
+                        String postParameters = "userTel=" + name + "&userMSG=" + Message;
 
 
                         try {

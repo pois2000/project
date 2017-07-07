@@ -2,7 +2,7 @@
   	require_once 'dbconfig.php';
     $who = (string)$_GET['who'];
     if($who){
-        $result = $DB_con->prepare("SELECT * FROM `tbl_users` WHERE calleeTel = '".$who."'");
+        $result = $DB_con->prepare("SELECT * FROM `media_table` WHERE calleeTel = '".$who."'");
         $result->execute();
         $count = $result->rowCount();
         if($count > 0)

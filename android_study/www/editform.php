@@ -11,7 +11,7 @@
 	if(isset($_GET['edit_id']) && !empty($_GET['edit_id']))
 	{
 		$id = $_GET['edit_id'];
-		$stmt_edit = $DB_con->prepare('SELECT userID, calleeName, calleeTel, userName, userTel, userPic, userSound FROM tbl_users WHERE userID =:uid');
+		$stmt_edit = $DB_con->prepare('SELECT userID, calleeName, calleeTel, userName, userTel, userPic, userSound FROM media_table WHERE userID =:uid');
 		$stmt_edit->execute(array(':uid'=>$id));
 		$edit_row = $stmt_edit->fetch(PDO::FETCH_ASSOC);
 		extract($edit_row);
@@ -107,7 +107,7 @@
 		// if no error occured, continue ....
 		if(!isset($errMSG))
 		{
-			$stmt = $DB_con->prepare('UPDATE tbl_users
+			$stmt = $DB_con->prepare('UPDATE media_table
 												     SET userName=:uname,userTel=:utel, userPic=:upic, userSound=:usound, calleeName=:rname, calleeTel=:rtel
 											       WHERE userID=:uid');
 			$stmt->bindParam(':uname',$userName);
