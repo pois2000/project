@@ -10,15 +10,16 @@
 
 	if(isset($_POST['btnsave']))
 	{
-		$hostName = $userName = $_POST['user_name'];// user name
-		$hostTel = $userTel = $_POST['user_tel'];// user tel
+		$hostName = $_POST['user_name'];// user name
+		$userName = $_POST['user_name'];// user name
+		$hostTel =  $_POST['user_tel'];// user tel
+		$userTel = $_POST['user_tel'];// user tel
 
 		$eventID = date("mdyhis").substr($hostTel,7,11);  //eventID  생성 규칙 YYMMDDHHMMSSXXXX 년월일시분초+전화번호뒷네자리
-
 		$calleeName = $_POST['callee_name'];
 		$calleeTel = $_POST['callee_tel'];
 		$purpose = $_POST['purpose'];
-		$msg = $_POST['messge'];
+		$message = $_POST['message'];
 		$pin = $_POST['pin'];
 
 		$imgFile = $_FILES['user_pic']['name'];
@@ -69,6 +70,7 @@
 				if($imgSize < 10000000){
 
 				move_uploaded_file($tmp_dir,$upload_dir."/img/".$userPic);
+				copy("image/add.png", $upload_dir."/img/add.png");
 				rename("uploads/"."$calleeTel".".wav", $upload_dir."/sound/"."$userSound");  //서버에 저장된 파일 이동 및 이름 변경하기
 
 				$filepath = $upload_dir."/img/".$userPic;
@@ -101,40 +103,44 @@
 		// if no error occured, continue ....
 		if(!isset($errMSG))
 		{
-			$stmt = $DB_con->prepare('INSERT INTO event_table(eventID, calleeTel, calleeName, pin, hostName, hostTel, purpose)
-				VALUES(:eID, :ctel, :cname:, :pn, :hname, :htel, :pur, :itel)');
+			$stmt = $DB_con->prepare('INSERT INTO event_table (eventID, calleeTel, calleeName,pin, hostName, hostTel, purpose) VALUES (:eID, :rtel, :rname, :pn, :uname, :utel, :pur)');
 			$stmt->bindParam(':eID',$eventID);
-			$stmt->bindParam(':ctel',$calleeTel);
-			$stmt->bindParam(':cname:',$calleeName);
+			$stmt->bindParam(':rtel',$calleeTel);
+			$stmt->bindParam(':rname',$calleeName);
 			$stmt->bindParam(':pn',$pin);
-			$stmt->bindParam(':hname',$hostName);
-			$stmt->bindParam(':htel',$hostTel);
+			$stmt->bindParam(':uname',$hostName);
+			$stmt->bindParam(':utel',$hostTel);
 			$stmt->bindParam(':pur',$purpose);
-			$result1=$stmt->execute();
-			print($result);
 
-			$stmt2 = $DB_con->prepare('INSERT INTO media_table(userName,userTel,userPic,userSound,calleeName,calleeTel,eventID, message)
-				VALUES(:uname, :utel, :upic, :usound, :rname, :rtel, :eID, :msg)');
-			$stmt2->bindParam(':uname',$userName);
-			$stmt2->bindParam(':utel',$userTel);
-			$stmt2->bindParam(':upic',$userPic);
-			$stmt2->bindParam(':usound',$userSound);
-			$stmt2->bindParam(':rname',$calleeName);
-			$stmt2->bindParam(':rtel',$calleeTel);
-			$stmt2->bindParam(':eID',$eventID);
-			$stmt2->bindParam(':msg',$msg);
-			$result2=$stmt2->execute();
-			print($result2);
-
-			if($result1)
+			if($stmt->execute())
 			{
+
 				$successMSG = "new record succesfully inserted ...";
-				header("refresh:1;index.php?calleeTel=".$calleeTel); // redirects image view page after 5 seconds.
+				// header("refresh:1;index.php?calleeTel=".$calleeTel); // redirects image view page after 5 seconds.
 			}
 			else
 			{
 				$errMSG = "error while inserting....";
 			}
+
+			$stmt2 = $DB_con->prepare('INSERT INTO tbl_users(userName,userTel,userPic,userSound,eventID,message) VALUES(:uname, :utel, :upic, :usound, :rname, :rtel, :eID, :msg)');
+			$stmt2->bindParam(':uname',$userName);
+			$stmt2->bindParam(':utel',$userTel);
+			$stmt2->bindParam(':upic',$userPic);
+			$stmt2->bindParam(':usound',$userSound);
+			$stmt2->bindParam(':eID',$eventID);
+			$stmt2->bindParam(':msg',$message);
+
+		if($stmt2->execute())
+		{
+			$successMSG = "new record succesfully inserted ...";
+			header("refresh:2;index.php?id=".$eventID); // redirects image view page after 5 seconds.
+		}
+		else
+		{
+			$errMSG = "error while inserting....";
+		}
+
 		}
 	}
 ?>
@@ -146,59 +152,36 @@
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="style.css">
 <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
 <!-- for Edige/FF/Chrome/Opera/etc. getUserMedia support -->
 <script src="https://cdn.webrtc-experiment.com/gumadapter.js"></script>
 <!-- <script src="audio_record.js"></script> -->
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
+
 <body>
-<style>
-	audio {
-		vertical-align: bottom;
-		width: 80%;
-	}
-	video {
-		visibility: hidden;
-		width: 0%;
-		height: 0%;
-		/*vertical-align: top;*/
-	}
+<script>
+var b = "";
+var ua = window.navigator.userAgent;
+if(ua.indexOf('wv') > 0)  alert("여기서는 녹음이 불가능합니다. 메뉴(점3개)를 누른 뒤 다른 브라우저로 열기를 누르세요.");
+</script>
 
-	#hidden {
-		visibility: hidden;
-		width: 5px;
-		height: :0;
-		margin: :0;
-		padding: :0;
-		font-size: 0.1px:
-		float:left;
-	}
-	#record{
-		/*float: left;*/
-		font-size: 1em;
-		/*float: right;*/
-		/*margin-top: -22px;*/
-		width: 100px;
-	}
-	#sound_button{
-		/*float: left;*/
-	}
+<div class="container" id="background-image">
+<div id="header">
+	<div id="menu">
+</div>
 
-</style>
-
-<div class="container">
-
-
-	<div class="page-header">
-    	<h1 class="h2">친구에게 LoveRoll 보내기 <a class="btn btn-default" href="index.php">
-				<span class="glyphicon glyphicon-eye-open"></span> &nbsp; 친구들 메시지 보기 </a></h1>
-    </div>
-
+		<div id="logo_message">
+			<center>
+				<span lang=eng>LoveRoll</span>
+			</center>
+			<p>우리가 사랑하는 친구를 위해<br />
+			새로운 롤링페이퍼를 만들어 보세요.</p>
+	</div>
+</div>
 
 	<?php
 	if(isset($errMSG)){
@@ -221,46 +204,46 @@
 <form method="post" enctype="multipart/form-data">
 
 	<div class="form-group">
-		<label class="control-label">친구 이름</label>
-		<input class="form-control" type="text" name="callee_name" placeholder="선물받을 사람 이름" />
+		<label class="control-label"><i class="material-icons">cake</i>친구 이름</label>
+		<input class="form-control" type="text" name="callee_name" placeholder="선물받을 사람 이름" value="<?php echo $calleeName ?>"/>
   </div>
 	<div class="form-group">
-		<label class="control-label">친구 번호</label>
-		<input id="ctel" class="form-control" type="text" name="callee_tel" value="<?php echo $tempnum;?>" placeholder="선물받을 사람 전화번호"  />
-  </div>
-
-	<div class="form-group">
-		<label class="control-label">이벤트 목적</label>
-		<input class="form-control" type="text" name="purpose" placeholder="이벤트 목적을 20자 이내로 작성"  />
+		<label class="control-label"><i class="material-icons">cake</i>친구 번호</label>
+		<input id="ctel" class="form-control" type="text" name="callee_tel" value="<?php echo $calleeTel;?>" placeholder="선물받을 사람 전화번호"  />
   </div>
 
 	<div class="form-group">
-		<label class="control-label">이벤트 비밀번호</label>
-		<input class="form-control" type="text" name="pin" placeholder="이벤트 참여용 숫자 4자리 비밀번호"  />
+		<label class="control-label"><i class="material-icons">comment</i>이벤트 목적</label>
+		<input class="form-control" type="text" name="purpose" placeholder="이벤트 목적을 20자 이내로 작성"  value="<?php echo $purpose ?>"/>
   </div>
 
 	<div class="form-group">
-		<label class="control-label">주최자 이름</label>
-		<input class="form-control" type="text" name="user_name" placeholder="당신의 이름" />
+		<label class="control-label"><i class="material-icons">fiber_pin</i>이벤트 비밀번호</label>
+		<input class="form-control" type="text" name="pin" placeholder="이벤트 참여용 숫자 4자리 비밀번호"  value="<?php echo $pin ?>"/>
+  </div>
+
+	<div class="form-group">
+		<label class="control-label"><i class="material-icons">account_circle</i>주최자 이름</label>
+		<input class="form-control" type="text" name="user_name" placeholder="당신의 이름" value="<?php echo $userName ?>"/>
   </div>
 
   <div class="form-group">
-		<label class="control-label">주최자 번호(선택)</label>
-		<input class="form-control" type="text" name="user_tel" placeholder="당신의 번호(선택)"  />
+		<label class="control-label"><i class="material-icons">account_circle</i>주최자 번호(선택)</label>
+		<input class="form-control" type="text" name="user_tel" placeholder="당신의 번호(선택)" value="<?php echo $userTel ?>"  />
 	</div>
 
 	<div class="form-group">
-		<label class="control-label">축하 사진</label>
-		<input class="input-group" type="file" name="user_pic" accept="image/*" />
+		<label class="control-label"><i class="material-icons">add_a_photo</i>축하 사진</label>
+		<input class="input-group" type="file" name="user_pic" accept="image/*"/>
   </div>
 
 	<div class="form-group">
-		<label class="control-label">축하 메시지(선택)</label>
-		<input class="form-control" type="text" name="message" placeholder="전하고 싶은 말 10글자(선택)"  />
+		<label class="control-label"><i class="material-icons">mode_comment</i>축하 메시지(선택)</label>
+		<input class="form-control" type="text" name="message" placeholder="전하고 싶은 말 10글자(선택)" alue="<?php echo $message ?>" />
   </div>
 
 	<div class="form-group">
-		<label class="control-label">축하 음성(선택)</label>
+		<label class="control-label"><i class="material-icons">mic</i>축하 음성(선택)</label>
 		<section class="experiment recordrtc">
 				<button id="record">녹음(5초)</button>
 				<select id="hidden" class="recording-media">
@@ -271,12 +254,12 @@
 				</select>
 			<video id="hidden" controls muted></video> <!-- 여기가 녹음기? -->
 		</section>
-			<input id="hidden" class="user_sound" type="text" name="user_sound" />
+			<input id="hidden" class="user_sound" type="text" name="user_sound"/>
 </div>
 
 	<div class="form-group">
-		<button type="submit" name="btnsave" class="btn btn-default">
-    	<span class="glyphicon glyphicon-save"></span> &nbsp; 저장
+		<button type="submit" name="btnsave" class="save_btn"
+    	<span class="glyphicon glyphicon-save"></span> &nbsp; 완료
     </button>
 	</div>
 
@@ -615,8 +598,6 @@
               // alert('You can leave now. Your files are removed from the server.');
             }
           };
-					alert("지우기 시도함");
-          // request.open('POST', 'delete.php');
           var formData = new FormData(); //서버내 임시파일 지우기
           formData.append('delete-file', fileURL.split('/').pop());
           request.send(formData);

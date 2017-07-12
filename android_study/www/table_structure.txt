@@ -10,16 +10,14 @@ event_table
 7	purpose	text            필수
 
 
-media_table
+tbl_users
 1	userID	int(11)
 2	userName	varchar(20)	   필수
 3	userTel	char(11)	       옵션
 4	userPic	varchar(200)     필수
-5	userSound	varchar(200)	 필수
-6	calleeName	varchar(20)  자동
-7	calleeTel	char(11)	     자동
-8	eventID	int(11)         이벤트 연결 고리
-9 message(100)             옵션
+5	userSound	varchar(200)	 옵션
+6	eventID	int(11)         이벤트 연결 고리
+7 message(100)             옵션
 
 
 이벤트ID생성 규칙

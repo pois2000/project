@@ -1,5 +1,5 @@
 <?php
-	$tempnum = (string)$_GET['calleeTel'];
+	// $tempnum = (string)$_GET['calleeTel'];
 	error_reporting( ~E_NOTICE ); // avoid notice
 
 	require_once 'dbconfig.php';
@@ -7,33 +7,51 @@
 	include("resize-class.php");
 	include("find_file_end_num.php");
 	include("thumbnail.php");
+	$eventID = (string)$_GET['id'];
+
+	$result = $DB_con->prepare("SELECT * FROM `event_table` WHERE eventID = '".$eventID."'");
+	$result->execute();
+	$count = $result->rowCount();
+	if($count > 0)
+	{
+		while($row=$result->fetch(PDO::FETCH_ASSOC))
+		{
+			extract($row);
+			$calleeTel=$row['calleeTel'];
+			$calleeName=$row['calleeName'];
+			$origine_pin=$row['pin'];
+			$hostName=$row['hostName'];
+			$hostTel=$row['hostTel'];
+			$purpose=$row['purpose'];
+		}
+	}
 
 	if(isset($_POST['btnsave']))
 	{
 		$userName = $_POST['user_name'];// user name
 		$userTel = $_POST['user_tel'];// user tel
-
-		$calleeName = $_POST['callee_name'];// callee name
-		$calleeTel = $_POST['callee_tel'];// callee tel
-
+		$message = $_POST['message'];
+		$get_pin = $_POST['pin'];
 		$imgFile = $_FILES['user_pic']['name'];
 		$tmp_dir = $_FILES['user_pic']['tmp_name'];
 		$imgSize = $_FILES['user_pic']['size'];
 		$sndFile = $_POST['user_sound'];
-		// $errMSG = "$sndFile:".$sndFile."  $sndExt:".$sndExt." 원본파일경로:"."uploads/"."$calleeTel".".wav";
-		// $DB_con->query("SELECT calleeTel FROM media_table WHERE $who");
+
 		if(empty($userName)){
 			$errMSG = "당신의 이름을 입력해주세요.";
 		}
-		else if(empty($calleeTel)){
-			$errMSG = "친구의 번호를 입력해주세요.";
+		else if(empty($get_pin) or !is_numeric($get_pin) or strlen($get_pin)!=4){
+			$errMSG = "비밀번호 숫자 4자리를 입력해주세요.";
 		}
-		else if(empty($sndFile)){
-			$errMSG = "음성 메시지를 입력해주세요.";
+		else if($get_pin!=$origine_pin){
+			$errMSG = "비밀번호가 다릅니다.";
 		}
 		else if(empty($imgFile)){
 			$errMSG = "이미지를 선택해주세요";
 		}
+		// else if(empty($msg)){
+		// 	$msg="";
+		// }
 		else
 		{
 			$upload_dir = "user/".$calleeTel; // upload directory
@@ -56,23 +74,17 @@
 			// rename uploading image
 			$userPic = "mole".$num.".".$imgExt;
 			$userSound = "mole".$num.".".$sndExt;
-			// if($sndExt){$userSound = "mole".$num.".".$sndExt;}
-			// else{$userSound="";}
-			// allow valid image file formats
+
 			if(in_array($imgExt, $valid_extensions)){
 				// Check file size '5MB'
 				if($imgSize < 10000000){
 
 				move_uploaded_file($tmp_dir,$upload_dir."/img/".$userPic);
-				// echo "<script>alert(\"사운드 변환시작\")</script>";
-				// echo "<script>alert(".$sndFile.")</script>";
-				// echo "$upload_dir."/sound/".$userSound".$upload_dir."/sound/".$userSound;
-				// move_uploaded_file("uploads/".$sndFile,$upload_dir."/sound/".$userSound);
 				rename("uploads/"."$calleeTel".".wav", $upload_dir."/sound/"."$userSound");  //서버에 저장된 파일 이동 및 이름 변경하기
 
 				$filepath = $upload_dir."/img/".$userPic;
 				$new_width = 200;
-				$new_height = 300;
+				$new_height = 200;
 
 				if($imgExt=="png"){
 					pngresize($filepath,$new_width,$new_height);
@@ -100,93 +112,71 @@
 		// if no error occured, continue ....
 		if(!isset($errMSG))
 		{
-			$stmt = $DB_con->prepare('INSERT INTO media_table(userName,userTel,userPic,userSound,calleeName,calleeTel) VALUES(:uname, :utel, :upic, :usound, :rname, :rtel)');
-			$stmt->bindParam(':uname',$userName);
-			$stmt->bindParam(':utel',$userTel);
-			$stmt->bindParam(':upic',$userPic);
-			$stmt->bindParam(':usound',$userSound);
-			$stmt->bindParam(':rname',$calleeName);
-			$stmt->bindParam(':rtel',$calleeTel);
+			$stmt2 = $DB_con->prepare('INSERT INTO tbl_users(userName,userTel,userPic,userSound,eventID,message) VALUES(:uname, :utel, :upic, :usound, :eID, :msg)');
+			$stmt2->bindParam(':uname',$userName);
+			$stmt2->bindParam(':utel',$userTel);
+			$stmt2->bindParam(':upic',$userPic);
+			$stmt2->bindParam(':usound',$userSound);
+			$stmt2->bindParam(':eID',$eventID);
+			$stmt2->bindParam(':msg',$message);
 
-			if($stmt->execute())
-			{
-				$successMSG = "new record succesfully inserted ...";
-				header("refresh:1;index.php?calleeTel=".$calleeTel); // redirects image view page after 5 seconds.
-			}
-			else
-			{
-				$errMSG = "error while inserting....";
-			}
+		if($stmt2->execute())
+		{
+			$successMSG = "new record succesfully inserted ...";
+			header("refresh:2;index.php?id=".$eventID); // redirects image view page after 5 seconds.
+		}
+		else
+		{
+			$errMSG = "error while inserting....";
+		}
+
 		}
 	}
+      $share_msg = "sms://?body=".rawurlencode($purpose."(".$hostName."요청) (".count($images)."참여) https://pois.000webhostapp.com/index.php?id=".$eventID."  [비번:".$pin."]");
+
 ?>
 
 <html>
 <head>
-<title>LoveRoll 새메시지 작성</title>
+<title>  <?php echo $callee_name."(".$tel.")"?>님의 러브롤 참여 하기</title>
 <meta charset="utf-8">
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="style.css">
 <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
 <!-- for Edige/FF/Chrome/Opera/etc. getUserMedia support -->
 <script src="https://cdn.webrtc-experiment.com/gumadapter.js"></script>
 <!-- <script src="audio_record.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
 </head>
 <body>
-<style>
-	audio {
-		vertical-align: bottom;
-		width: 80%;
-	}
-	video {
-		visibility: hidden;
-		width: 0%;
-		height: 0%;
-		/*vertical-align: top;*/
-	}
-
-	#hidden {
-		visibility: hidden;
-		width: 5px;
-		height: :0;
-		margin: :0;
-		padding: :0;
-		font-size: 0.1px:
-		float:left;
-	}
-	#record{
-		/*float: left;*/
-		font-size: 1em;
-		/*float: right;*/
-		/*margin-top: -22px;*/
-		width: 100px;
-	}
-	#sound_button{
-		/*float: left;*/
-	}
-
-</style>
-
-<div class="container">
-
-
-	<div class="page-header">
-    	<h1 class="h2">친구에게 LoveRoll 보내기 <a class="btn btn-default" href="index.php">
-				<span class="glyphicon glyphicon-eye-open"></span> &nbsp; 친구들 메시지 보기 </a></h1>
-    </div>
-
+  <div class="container" id="background-image">
+	<div id="header">
+    <div id="menu">
+    <a href="createnew.php" class="btn" target=_blank><i class="material-icons" style="font-size:35px">add_alert</i>새 럽롤</a>
+    <a href=<?php echo $share_msg?> class="btn"><i class="material-icons" style="font-size:35px">share</i>친구 초대</a>
+  </div>
+    <div id="logo_message">
+			<center>
+        <span><?php echo $calleeName?>님의</span>
+        <span lang=eng>LoveRoll</span>
+      </center>
+        <p><?php echo $purpose."(".$hostName.")"?><BR />
+          우리 LoveRoll을 함께 해요!
+        </p>
+      </div>
+ </div>
 
 	<?php
 	if(isset($errMSG)){
 			?>
             <div class="alert alert-danger">
-            	<span class="glyphicon glyphicon-info-sign"></span>
+							<i class="material-icons">info</i>
 							<strong><?php echo $errMSG; ?></strong>
             </div>
             <?php
@@ -194,41 +184,43 @@
 	else if(isset($successMSG)){
 		?>
         <div class="alert alert-success">
-              <strong><span class="glyphicon glyphicon-info-sign"></span> <?php echo $successMSG; ?></strong>
+              <strong><i class="material-icons">info</i> <?php echo $successMSG; ?></strong>
         </div>
         <?php
 	}
+
 	?>
+
 <form method="post" enctype="multipart/form-data">
 
-  <div class="form-group">
-		<label class="control-label">내 이름</label>
-		<input class="form-control" type="text" name="user_name" placeholder="당신의 이름" />
+	<div class="form-group">
+		<label class="control-label"><i class="material-icons">fiber_pin</i>비밀번호(필수)</label>
+		<input class="form-control" type="text" name="pin" placeholder="럽롤 참여 비밀번호 숫자 4자리" value="<?php echo $get_pin ?>"/>
+  </div>
+	<div class="form-group">
+		<label class="control-label"><i class="material-icons">account_circle</i>이름(필수)</label>
+		<input class="form-control" type="text" name="user_name" placeholder="당신의 이름" value="<?php echo $userName ?>"/>
   </div>
 
   <div class="form-group">
-		<label class="control-label">내 번호(선택)</label>
-		<input class="form-control" type="text" name="user_tel" placeholder="당신의 번호(선택)"  />
+		<label class="control-label"><i class="material-icons">account_circle</i>번호(선택)</label>
+		<input class="form-control" type="text" name="user_tel" placeholder="당신의 번호(선택)" value="<?php echo $userTel ?>" />
 	</div>
 
 	<div class="form-group">
-		<label class="control-label">친구 이름(선택)</label>
-		<input class="form-control" type="text" name="callee_name" placeholder="선물받을 사람 이름(선택)" />
-  </div>
-	<div class="form-group">
-		<label class="control-label">친구 번호</label>
-		<input id="ctel" class="form-control" type="text" name="callee_tel" value="<?php echo $tempnum;?>" placeholder="선물받을 사람 전화번호"  />
+		<label class="control-label"><i class="material-icons">add_a_photo</i> 축하 사진(필수)</label><br />
+		<input class="input-group" type="file" name="user_pic" accept="image/*"/>
   </div>
 
 	<div class="form-group">
-		<label class="control-label">축하 사진</label>
-		<input class="input-group" type="file" name="user_pic" accept="image/*" />
+		<label class="control-label"><i class="material-icons">mode_comment</i>축하 메시지(선택)</label>
+		<input class="form-control" type="text" name="message" placeholder="전하고 싶은 말 10글자(선택)" value="<?php echo $message ?>" />
   </div>
 
 	<div class="form-group">
-		<label class="control-label">축하 음성</label>
+		<label class="control-label"><i class="material-icons">mic</i>축하 음성(선택)</label>
 		<section class="experiment recordrtc">
-				<button id="record">녹음(5초)</button>
+				<button id="record" class="input-group">녹음(5초)</button>
 				<select id="hidden" class="recording-media">
 					<option value="record-audio">Audio</option>
 				</select>
@@ -237,20 +229,24 @@
 				</select>
 			<video id="hidden" controls muted></video> <!-- 여기가 녹음기? -->
 		</section>
-			<input id="hidden" class="user_sound" type="text" name="user_sound" />
+			<input id="hidden" class="user_sound" type="text" name="user_sound"  />
 </div>
 
 	<div class="form-group">
-		<button type="submit" name="btnsave" class="btn btn-default">
-    	<span cl`ass="glyphicon glyphicon-save"></span> &nbsp; 저장
+		<button type="submit" name="btnsave" class="save_btn" >
+    	<i class="material-icons">done_all</i>완료
     </button>
+	</div>
+	<div id=hidden>
+		<label class="control-label">친구 번호</label>
+		<input id="ctel" class="form-control" type="text" name="callee_tel" value="<?php echo $calleeTel?>" placeholder="선물받을 사람 전화번호"  />
 	</div>
 
 </form>
 </div>
 
-
     <script>
+
       (function() { // 뭔가 파일을 찾는 것 같은데..
         var params = {},
           r = /([^&=]+)=?([^&]*)/g;
@@ -279,7 +275,6 @@
       var mediaContainerFormat = recordingDIV.querySelector('.media-container-format'); //파일 포멧 찾기
       // recordingDIV.querySelector('button').onclick = function() { //녹음 버튼 누르면 실행
       recordingDIV.querySelector('button').onclick = function() { //녹음 버튼 누르면 실행
-				if($("#ctel").val()){
         var button = this;
         if (button.innerHTML === '녹음중지') {
           button.disabled = true;
@@ -398,10 +393,6 @@
             button.recordRTC.startRecording();
           };
         }
-      }
-		else {
-			alert("친구 번호를 먼저 입력하세요.");
-		};
 	}
 
       function captureAudio(config) { // 여기가 오디오 컨피그 유지
@@ -581,7 +572,6 @@
               // alert('You can leave now. Your files are removed from the server.');
             }
           };
-					alert("지우기 시도함");
           // request.open('POST', 'delete.php');
           var formData = new FormData(); //서버내 임시파일 지우기
           formData.append('delete-file', fileURL.split('/').pop());

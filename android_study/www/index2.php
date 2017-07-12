@@ -38,7 +38,7 @@
         }
       }
       else{
-        header('refresh:0;view.php'); //기본 페이지 지정
+        header('refresh:0;index2.php?id=1000010000100001'); //기본 페이지 지정
         }
       $tel=preg_replace("/(0(?:2|[0-9]{2}))([0-9]+)([0-9]{4}$)/", "\\1-\\2-\\3", $calleeTel); //010-1234-1234 형식으로 표시하기
       $share_msg = "sms://?body=".rawurlencode($purpose."(".$hostName."요청) (".count($images)."참여) https://pois.000webhostapp.com/index.php?id=".$eventID."  [비번:".$pin."]");
@@ -84,7 +84,7 @@
 <div id="myModal" class="modal">
   <div class="modal-content">
       <!-- <span class="close">&times;</span> -->
-      <img id=modalimg width="100%" >
+      <img id=modalimg >
       <div class="imgtxt">
         <p id=modalwho>이름</p>
         <p id=modaltxt>메시지</p>
@@ -95,17 +95,8 @@
 
       </div>
 <div id=button>
-  <a href="addnew.php?id=<?php echo $eventID?>" >
-    <i class="material-icons" style="font-size:40px">add</i>
-    <!-- 글쓰기 -->
-  </a>
+  <a href="addnew.php?id=<?php echo $eventID?>" ><i class="material-icons" style="font-size:40px">add</i>글쓰기</a>
 </div>
-
-<!-- <div class=footer>
-  <hr />
-  <p>
-    Contact : <a href="mailto:pois2000@gmail.com?subject=LoveRoll_Feedback">email me</a>  </p>
-  </div> -->
 
   <script>
     (function() {
@@ -142,13 +133,14 @@
               $("#modalimg").attr("src",'user/' + who + '/img/' + images[i]); //이미지 경로 정하기
               $("#modalwho").html(hypes[i]); //이름표시
               $("#modaltxt").html(msgs[i]); //내용 표시
+              // $(".modal").css("display","block"); //보이게 할 수 있나?
 
               mole.element.removeClass("visible").addClass("dead");
               // mole.whack.addClass("visible");
               $(".modal").addClass("visible");
               mole.whackTtl = 500;
-              // mole.timer = getRandomInt(2000, 5000); //
               mole.timer = getRandomInt(150, 3000);
+              // mole.timer = getRandomInt(150, 3000);
             }
           }
         }
@@ -207,7 +199,7 @@
               imgid: i,
               whack: whackImg,
               whackTtl: 0,
-              timer: getRandomInt(0, 500) //최초 나타나는 시간
+              timer: getRandomInt(500, 3000)
             };
             moles.push(mole);
 
@@ -243,11 +235,11 @@
                 // $("#Mole_" + mole.id).attr("src", 'user/' + who + '/img/' + images[mole.imgid]);
                 mole.state = "alive";
                 mole.element.removeClass("hidden").removeClass("dead").addClass("visible");
-                mole.timer = getRandomInt(2000, 5000);
+                mole.timer = getRandomInt(500, 3000);
               } else {
                 mole.state = "dead";
                 mole.element.removeClass("visible").addClass("hidden");
-                mole.timer = getRandomInt(500, 5000);
+                mole.timer = getRandomInt(500, 3000);
               }
             }
           }
@@ -277,6 +269,9 @@
         $(".mole").click(function() {
           $(this).removeClass("visible").addClass("hidden");
         });
+        // $(".modal").click(function() {
+        //   $(".modal").removeClass("visible");
+        // });
 
         game.initialize("canvas");
         game.start();

@@ -1,0 +1,39 @@
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    $("#btn1").click(function(){
+      $("p").append(" <b>Appended text</b>");
+    });
+    $("#btn2").click(function(){
+      $("p").prepend("<b>Prepend text</b> ");
+    });
+     $("#btn3").click(function(){
+      $(" <li>Appended item</li>").appendTo("ol");
+    });
+    $("#btn4").click(function(){
+      $("<li>Prepended item</li> ").prependTo("ol");
+    });
+  });
+  </script>
+
+
+</head>
+
+<body>
+  <p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+<ol>
+<li>List item 1</li>
+<li>List item 2</li>
+<li>List item 3</li>
+</ol>
+<button id="btn1">Append text</button>
+<button id="btn2">Prepend text</button>
+<button id="btn3">AppendTo text</button>
+<button id="btn4">PrependTo list item</button>
+
+</body>
+</html>

@@ -1,91 +1,95 @@
 <?php
+require_once 'dbconfig.php';
 
-	require_once 'dbconfig.php';
-
-	if(isset($_GET['delete_id']))
+$result = $DB_con->prepare('SELECT * FROM event_table ORDER By eventID DESC');
+$result->execute();
+$count = $result->rowCount();
+if($count > 0)
+{
+	while($row=$result->fetch(PDO::FETCH_ASSOC))
 	{
-		// select image from db to delete
-		$stmt_select = $DB_con->prepare('SELECT userPic, calleeTel, userSound FROM media_table WHERE userID =:uid');
-		$stmt_select->execute(array(':uid'=>$_GET['delete_id']));
-		$delRow=$stmt_select->fetch(PDO::FETCH_ASSOC);
-		// unlink("user/".$imgRow['userPic']);
-		unlink('user/'.$delRow['calleeTel'].'/img/'.$delRow['userPic']); //기존 파일 삭제
-		unlink('user/'.$delRow['calleeTel'].'/sound/'.$delRow['userSound']); //기존 파일 삭제
-
-
-		// it will delete an actual record from db
-		$stmt_delete = $DB_con->prepare('DELETE FROM media_table WHERE userID =:uid');
-		$stmt_delete->bindParam(':uid',$_GET['delete_id']);
-		$stmt_delete->execute();
-
-		header("Location: view2.php");
+		extract($row);
+		$eventIDt[] = $row['eventID']; //이벤트ID 리스트 저장
+		$member[] = array($row['calleeName'],$row['calleeTel'],$row['hostName'], //나머지 이벤트 저장
+								$row['purpose'],"pic_count","first_filename");
 	}
+}
 
-?>
-<html>
-<head>
-<title>Upload, Insert, Update, Delete an Image using PHP MySQL - Coding Cage</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-
-<div class="container">
-
-	<div class="page-header">
-    	<h1 class="h2">누구나 / <a class="btn btn-default" href="addnew.php">
-				<span class="glyphicon glyphicon-plus"></span> &nbsp; 사진추가 </a></h1>
-    </div>
-
-<br />
-
-<div class="row">
-<?php
-
-	$stmt = $DB_con->prepare('SELECT userID, calleeName, calleeTel, userName, userTel, userPic, userSound FROM media_table ORDER BY userID DESC');
+$stmt = $DB_con->prepare('SELECT * FROM tbl_users ORDER By eventID DESC');
 	$stmt->execute();
-
+	$count = $stmt->rowCount();
 	if($stmt->rowCount() > 0)
 	{
 		while($row=$stmt->fetch(PDO::FETCH_ASSOC))
 		{
 			extract($row);
-			$temp = explode('.', $row['userSound']); // 사운드 확장자 찾아내기
-			?>
-			<div class="col-xs-3">
-				<p class="page-header"><?php echo $userName."&nbsp;/&nbsp;".$userTel; ?></p>
-				<img src="../user/<?php echo $row['calleeTel']."/img/".$row['userPic']; ?>" class="img-rounded" width="200px" height="300px" />
-				<audio controls>
-				  <source src="../user/<?php echo $row['calleeTel']."/sound/".$row['userSound']; ?>"  type="audio/<?php echo $temp[1] ?>">
-				  Your browser does not support the audio tag.
-				</audio>
-				<p class="page-header">
-				<span>
-				<a class="btn btn-info" href="editform.php?edit_id=<?php echo $row['userID']; ?>" title="click for edit"><span class="glyphicon glyphicon-edit"></span> 수정</a>
-				<a class="btn btn-danger" href="?delete_id=<?php echo $row['userID'];?>" title="click for delete" onclick="return confirm('sure to delete ?')"><span class="glyphicon glyphicon-remove-circle"></span> 삭제</a>
-				</span>
-				</p>
-			</div>
-			<?php
+			$eventIDs[] = $row['eventID']; //저장된 중복된 이벤트ID 리스트
+			$userPics[] = $row['userPic']; //이미지 전체 저장
 		}
 	}
-	else
-	{
-		?>
-        <div class="col-xs-12">
-        	<div class="alert alert-warning">
-            	<span class="glyphicon glyphicon-info-sign"></span> &nbsp; No Data Found ...
-            </div>
-        </div>
-        <?php
-	}
+	$arr=array_count_values($eventIDs); //이벤트ID의 중복 제거
 
+	foreach ($arr as $key => $value) {
+		$key2=array_search($key, $eventIDt);  //이벤트테이블에서 행위치 찾기
+		$key3=array_search($key, $eventIDs);  //유저 테이블에서 행위치 찾기
+    $image = rand($key3,$key3+$value-1);  //랜덤 이미지 위치 찾기
+		$member[$key2][4]=$value; //이미지 개수 넣기
+		$member[$key2][5]=$userPics[$image]; //이미지 파일명 넣기
+
+	}
+	$rows=sizeof($eventIDt); //이벤트 개수 찾기
+	$nums=sizeof($eventIDs); //참여자 명수 찾기
+	// print_r($member);
 ?>
+
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>친구에게 사랑을 전하는 러브롤</title>
+  <link rel="stylesheet" href="style.css?v=<?=time();?>">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+<body id="body">
+  <div class="container" id="background-image">
+  <div id="header">
+    <div id="logo_message">
+      <center>
+        <span lang=eng>LoveRoll</span>
+      </center>
+        <p>친구에게 보내는 사랑 롤페이퍼<BR />
+          우리 LoveRoll을 함께 해요!(<?php echo $nums?>명 참여중)
+        </p>
+      </div>
+  </div>
 </div>
+
+<table border="0" width=100%>
+
+<?php
+	for($i=0; $i<$rows; $i++){
+		echo "<tr class='list'><td class='thumb'><a href=index.php?id=".$eventIDt[$i].">";
+		echo "<img class='list_img' width=100% height=100% src=user/".$member[$i][1]."/img/".$member[$i][5]." /></a></td>";
+		echo "<td class='list_message'><a href=index.php?id=".$eventIDt[$i]."><div class='list_title'>";
+		echo $member[$i][0]."님의 LoveRoll</div><div class='list_text'>";
+		echo $member[$i][3]."<br />";
+		echo $member[$i][2]."요청으로 ".$member[$i][4]."명 참여중</div></a></td></tr><tr></tr>";
+	}
+?>
+</table>
+<div id=button>
+  <a href="createnew.php" >
+    <i class="material-icons" style="font-size:40px">add_alert</i>
+    <!-- 글쓰기 -->
+  </a>
 </div>
+
 </body>
 </html>
