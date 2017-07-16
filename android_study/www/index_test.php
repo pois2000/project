@@ -2,7 +2,7 @@
     require_once 'dbconfig.php';
     $calleeTel = (string)$_GET['calleeTel'];
     if($calleeTel){
-        $result = $DB_con->prepare("SELECT * FROM `media_table` WHERE calleeTel = '".$calleeTel."'");
+        $result = $DB_con->prepare("SELECT * FROM `tbl_users` WHERE calleeTel = '".$calleeTel."'");
         $result->execute();
         $count = $result->rowCount();
         if($count > 0)

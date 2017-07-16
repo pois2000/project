@@ -1,30 +1,30 @@
-
-event_table
-#	Name	Type
-1	eventID	int(11)
-2	calleeTel	int(11)       필수
-3	calleeName	varchar(20) 필수
-4	pin	int(6)              필수
-5	hostName	varchar(20)   필수
-6	hostTel	int(11)         옵션
-7	purpose	text            필수
-
-
-tbl_users
-1	userID	int(11)
-2	userName	varchar(20)	   필수
-3	userTel	char(11)	       옵션
-4	userPic	varchar(200)     필수
-5	userSound	varchar(200)	 옵션
-6	eventID	int(11)         이벤트 연결 고리
-7 message(100)             옵션
-
-
-이벤트ID생성 규칙
-YYMMDDHHMMSSXXXX
-년월일시분초+전화번호뒷네자리
-
-시나리오
-1. 이벤트 생성인이 event table을 작성
-1-1. 생성한 뒤에 공유하기를 통해서 참여자에게 이벤트 URL을 줘서 PIN값으로 들어 오게 함
-2. 참여자는 pin값으로 이벤트 참가하면 된다.
+
+event_table
+#	Name	Type
+1	eventID	int(11)
+2	calleeTel	int(11)       필수
+3	calleeName	varchar(20) 필수
+4	pin	int(6)              필수
+5	hostName	varchar(20)   필수
+6	hostTel	int(11)         옵션
+7	purpose	text            필수
+
+
+tbl_users
+1	userID	int(11)
+2	userName	varchar(20)	   필수
+3	userTel	char(11)	       옵션
+4	userPic	varchar(200)     필수
+5	userSound	varchar(200)	 옵션
+6	eventID	int(11)         이벤트 연결 고리
+7 message(100)             옵션
+
+
+이벤트ID생성 규칙
+YYMMDDHHMMSSXXXX
+년월일시분초+전화번호뒷네자리
+
+시나리오
+1. 이벤트 생성인이 event table을 작성
+1-1. 생성한 뒤에 공유하기를 통해서 참여자에게 이벤트 URL을 줘서 PIN값으로 들어 오게 함
+2. 참여자는 pin값으로 이벤트 참가하면 된다.

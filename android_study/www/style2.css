@@ -1,0 +1,131 @@
+html, body {
+  margin: 0;
+}
+
+body {
+  overflow: auto;
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+div {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+#background-image {
+  background-image: url('image/daisy.jpg');
+  width: 100vw;
+  height: 200px;
+  background-size: cover;
+
+}
+
+#header {
+  background: linear-gradient(30deg, rgba(255, 0, 148, 0.65), rgba(0, 255, 230, 0.42), white);
+  width: 100vw;
+  height: 200px;
+}
+
+#logo_message {
+  padding: 30px 0 0 0;
+}
+
+span:lang(eng) {
+  font-size: 60px;
+  text-shadow: 2px 3px #4e4e4e;
+  color: white;
+  font-family: 'Lobster', cursive;
+}
+
+#button {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  color: white;
+  background-color: rgba(255, 0, 78, 0.5);
+  text-align: center;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+
+p {
+  /*max-width: 800px;*/
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 2px #4e4e4e;
+  vertical-align: middle;
+}
+
+.list {
+  width: 100vw;
+  margin:0 0 0 -40;
+
+}
+
+ul {
+    list-style: none;
+      margin:0 -20 0 0;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    background-color: rgba(255, 0, 78, 0.5);
+    border:solid 0.5px rgba(87, 87, 87, 0.64);
+}
+
+.thumb {
+    position: relative;
+    float: left;
+    width:100%;
+    max-width: 450px;
+    height: 100px;
+    margin: 10px;
+}
+
+.list_img{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100px;
+  height:100%;
+  background-color:white;
+
+}
+
+.list_message {
+    position: absolute;
+/*     right: 10px; */
+    top : 10px;
+    left: 110px;
+    font-size: 20px;
+    line-height: 1.26;
+    font-weight: bold;
+  text-shadow: 2px 2px #4e4e4e;
+}
+
+.list_count {
+    position: absolute;
+/*     right: 10px; */
+    bottom: 10px;
+    left: 110px;
+    font-size: 15px;
+}
